@@ -1,0 +1,303 @@
+/* googleFonts */
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --ligth-color-background: #F8F8FF;
+    --ligth-color-text: #171717;
+    --ligth-color-foreground: #B6B6B6;
+
+    --nav-height: 150px;
+    --page-inline-padding: 80px;
+}
+
+* {
+    /* background-color: var(--ligth-color-background); */
+    color: var(--ligth-color-text);
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+body {
+    background-color: var(--ligth-color-background);
+
+}
+
+#app {
+    background-color: var(--ligth-color-background);
+    height: calc(100vh - var(--nav-height));
+}
+
+/* Assets */
+.page-content {
+    padding: 0px var(--page-inline-padding);
+    margin-top: var(--nav-height);
+    width: 100%;
+}
+
+.input-container label, .input-container small {
+    background-color: transparent;
+}
+
+.input-container label {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+/* NavBar Layout */
+.nav-bar {
+    height: var(--nav-height);
+    width: 100vw;
+    background-color: var(--ligth-color-background);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 85px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+}
+
+.logo-container {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-bar-logo {
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--ligth-color-text);
+}
+
+/* MainPage */
+.main-page {
+    margin-top: calc(var(--nav-height) + 80px);
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px
+}
+
+.main-page-title {
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.main-page-text {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 2;
+}
+
+.btn-main {
+    background-color: var(--ligth-color-text);
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    letter-spacing: 3px;
+}
+
+.actions {
+    display: flex;
+    gap: 50px;
+}
+
+.info-link {
+    color: var(--ligth-color-foreground);
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.upb-link-container {
+    border-left: 4px solid var(--ligth-color-text);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 30px var(--page-inline-padding);
+}
+
+.upb-link{
+    color: var(--ligth-color-text);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    padding-left: 15px;
+}
+
+/* agenda cita */
+.ag-cita-page, .cancel-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ag-cita-title {
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.ag-cita-form {
+    width: 50vw;
+    margin-top: 10px;
+}
+
+.ag-cita-form .row {
+    margin-top: 20px;
+}
+
+.input-label {
+    margin-bottom: 2px;
+}
+
+.button-container {
+    padding-inline: 30%;
+}
+
+.agendar-button {
+    font-weight: 500;
+}
+
+/* cancela cita */
+.cancel-cita-form {
+    width: 25vw;
+}
+
+.cancel-cita-form .row {
+    margin-top: 20px;
+}
+
+/* invoice template */
+.invoice-test {
+    display: flex;
+   gap: 50px;
+   /* background-color: red; */
+}
+
+.ticket-template {
+    position: relative;
+    display: inline-block;
+}
+
+.ticket-data {
+    width: 290px;
+    height: 590px;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ticket-section {
+    padding-inline: 20px;
+}
+
+.ticket-section span {
+    background-color: transparent;
+}
+
+.top-section {
+    width: 100%;
+    height: 82px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.middle-section {
+    width: 100%;
+    height: 335px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.bottom-section {
+    width: 100%;
+    height: 173px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-label {
+    font-size: 12px;
+    color: var(--ligth-color-foreground);
+}
+
+.ticket-info {
+    font-size: 13px ;
+}
+
+.exp-date {
+    font-size: 12px;
+    text-align: center;
+    color: var(--ligth-color-foreground);
+
+}
+
+.ticket-label, .ticket-info {
+    display: block;
+}
+
+.center-row {
+    text-align: center;
+}
+
+.left-col{
+    text-align: left;
+}
+
+.right-col {    
+    text-align: right;
+}
+
+/* steps */
+
+.tutorial {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.steps-list {
+    list-style-type: decimal;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.steps-list li::marker {
+    font-weight: bold; 
+}
+
+.tutorial-title {
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 30px;
+}
