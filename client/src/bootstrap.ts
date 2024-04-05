@@ -8,7 +8,6 @@
     Array.prototype.slice.call(forms)
         .forEach(function (form) {
         form.addEventListener('submit', function (event: Event) {
-            console.log('aaaa');
             
             if (!form.checkValidity()) {
             event.preventDefault()

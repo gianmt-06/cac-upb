@@ -1,16 +1,9 @@
-"use strict";
-console.log('holamundo');
-(function () {
-    'use strict';
-    var forms = document.querySelectorAll('.needs-validation');
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-    });
-})();
+import Router from "../tools/router/Router.js";
+import { routes } from "./router/routes.js";
+import AppointmentController from "./controller/AppointmentController.js";
+import AppointmentModel from "./model/AppointmentModel.js";
+import AppointmentView from "./view/AppointmentView.js";
+const app = document.getElementById('app');
+const controller = new AppointmentController(new AppointmentView(), new AppointmentModel());
+controller.start();
+new Router(app, routes);

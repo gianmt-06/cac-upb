@@ -1,6 +1,5 @@
-import View from "../types/ViewInterface";
 
-export default class HomeView implements View {
+export default class HomeView {
 
     getTemplate() {
         return `
