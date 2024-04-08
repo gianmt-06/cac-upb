@@ -2,7 +2,7 @@ export default class ModalTicketComponent {
     getTemplate() {
         return `
         <div class="modal-ticket-component">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modal-btn">
                 Launch demo modal
             </button>
 
@@ -11,7 +11,26 @@ export default class ModalTicketComponent {
                     <div class="modal-content">
                         <div class="modal-body content-modal">
                             <div class="ticket-template">
-                                <img src="./assets/ticketAppmt.svg" alt="">
+                                <!-- <img src="./assets/ticketAppmt.svg" alt="aa"> -->
+                                <svg width="330" height="630" viewBox="0 0 330 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g filter="url(#filter0_d_144_197)">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M30 17C24.4772 17 20 21.4772 20 27V84C28.2843 84 35 90.7157 35 99C35 107.284 28.2843 114 20 114V419C28.2843 419 35 425.716 35 434C35 442.284 28.2843 449 20 449V597C20 602.523 24.4772 607 30 607H300C305.523 607 310 602.523 310 597V449C301.716 449 295 442.284 295 434C295 425.716 301.716 419 310 419V114C301.716 114 295 107.284 295 99C295 90.7157 301.716 84 310 84V27C310 21.4772 305.523 17 300 17H30Z" fill="white"/>
+                                        <path d="M35 435L292 435" stroke="#B4B4B4" stroke-dasharray="5 5"/>
+                                        <path d="M35 99L292 99" stroke="#B4B4B4" stroke-dasharray="5 5"/>
+                                    </g>
+                                    <defs>
+                                        <filter id="filter0_d_144_197" x="0" y="0" width="330" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                                        <feOffset dy="3"/>
+                                        <feGaussianBlur stdDeviation="10"/>
+                                        <feComposite in2="hardAlpha" operator="out"/>
+                                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+                                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_144_197"/>
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_144_197" result="shape"/>
+                                        </filter>
+                                    </defs>
+                                </svg>
                                 <div class="ticket-data">
                                     <div class="top-section ticket-section">
                                         <span>Codigo Cita</span>
@@ -99,7 +118,7 @@ export default class ModalTicketComponent {
                                     </li>
                                 </ul>
                                 <div class="row button-container">
-                                    <button type="button" class="btn btn-outline-dark agendar-button"
+                                    <button type="button" class="btn btn-outline-dark agendar-button" 
                                         id="submitButton" data-bs-dismiss="modal">Aceptar</button>
                                 </div>
                             </div>

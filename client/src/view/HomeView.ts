@@ -1,6 +1,11 @@
+import View from "./View";
 
-export default class HomeView {
+export default class HomeView extends View {
 
+    public deploy(){
+        this.loadView(this.getTemplate());
+    }
+    
     getTemplate() {
         return `
         <div class="main-page page-content">
@@ -12,7 +17,7 @@ export default class HomeView {
                 <p class="main-page-text">
                     Con solo unos clics, puedes programar citas <br>
                     para resolver reclamos, gestionar devoluciones o recibir asesoría <br>
-                    sobre nuestros productos. 
+                    sobre nuestros productos.
                 </p>
                 <div class="actions">
                     <button class="btn-main">INGRESAR</button>

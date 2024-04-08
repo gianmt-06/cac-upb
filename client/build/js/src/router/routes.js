@@ -1,14 +1,48 @@
+import HomeController from "../controller/HomeController";
+import HomeView from "../view/HomeView";
+import NotFoundController from "../controller/NotFoundController";
+import NotFoundView from "../view/NotFoundView";
+import AppointmentController from "../controller/AppointmentController";
+import AppointmentModel from "../model/AppointmentModel";
+import AppointmentView from "../view/AppointmentView";
+import ModifyAppmtController from "../controller/ModifyAppmtController";
+import ModifyAppmtView from "../view/ModifyAppmtView";
+import ModifyAppmtModel from "../model/ModifyAppmtModel";
+import CancelAppmtController from "../controller/CancelAppmtController";
+import CancelAppmtView from "../view/CancelAppmtView";
+import CancelAppmtModel from "../model/CancelAppmtModel";
 export const routes = [
     {
         name: 'home',
         path: 'home',
-        view: '<h1>Hola Mundo<h1/>',
+        routeController: new HomeController(new HomeView()),
+    },
+    {
+        name: 'citas',
+        path: 'citas',
+        routeController: new AppointmentController(new AppointmentView(), new AppointmentModel()),
         childrens: [
             {
-                name: 'cards',
-                path: 'cards',
-                view: '<h1>Hola Mundo2<h1/>'
+                name: 'reagendar',
+                path: 'modify',
+                routeController: new ModifyAppmtController(new ModifyAppmtView(), new ModifyAppmtModel()),
+                childrens: [
+                    {
+                        path: ':id',
+                        routeController: new AppointmentController(new AppointmentView(), new AppointmentModel()),
+                    }
+                ]
+            },
+            {
+                name: 'cancelar',
+                path: 'cancel',
+                routeController: new CancelAppmtController(new CancelAppmtView(), new CancelAppmtModel())
             }
         ]
+    },
+    {
+        name: 'notFound',
+        path: 'notFound',
+        routeController: new NotFoundController(new NotFoundView())
     }
 ];

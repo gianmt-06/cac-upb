@@ -10,6 +10,7 @@ tsc --init
 
 #Dirs
 mkdir -p src docs build test config 
+mkdir -p src/view src/controller src/model src/components src/router
 touch src/main.ts
 
 #ENV

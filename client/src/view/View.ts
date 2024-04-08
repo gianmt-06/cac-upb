@@ -1,9 +1,9 @@
-export default class View {
+export default abstract class View {
     private readonly app: HTMLDivElement = document.getElementById('app') as HTMLDivElement;
-
-    constructor(){}
-
-    public loadView = (html: string) => {
+        
+    protected loadView = (html: string) => {
         this.app.innerHTML = html;
     }
+
+    abstract deploy(): void;
 }

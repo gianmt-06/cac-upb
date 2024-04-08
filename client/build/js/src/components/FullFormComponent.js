@@ -1,15 +1,8 @@
+import formsValidator from "../helpers/FormsValidator";
 export default class FullFormComponent {
     constructor(documentt, name) {
         this.documentt = documentt;
         this.name = name;
-        this.defineAction = (action) => {
-            const button = document.querySelector('#submitButton');
-            button.addEventListener("click", () => {
-                action();
-                this.documentt = document.getElementById('docNumber').value;
-                console.log(this.documentt);
-            });
-        };
         this.getTemplate = () => {
             return `
         <div class="ag-cita-page page-content">
@@ -106,7 +99,6 @@ export default class FullFormComponent {
                         </div>
                     </div>
                 </div>
-                
             </div>
 
             <div class="row">
@@ -144,5 +136,8 @@ export default class FullFormComponent {
     </div>
         `;
         };
+    }
+    setAction(action) {
+        formsValidator(action);
     }
 }

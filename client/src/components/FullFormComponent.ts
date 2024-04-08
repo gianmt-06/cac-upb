@@ -1,17 +1,15 @@
+import formsValidator from "../helpers/FormsValidator";
+
 export default class FullFormComponent {
-    
+
     constructor(
         private documentt?: string,
         private name?: string,
-    ){}
+    ){
+    }
 
-    defineAction = (action: Function) => {
-        const button = document.querySelector('#submitButton') as HTMLButtonElement;
-        button.addEventListener("click", () => { 
-            action() 
-            this.documentt = (document.getElementById('docNumber') as HTMLInputElement).value;
-            console.log(this.documentt);
-        });
+    setAction(action: Function){
+        formsValidator(action);
     }
 
     getTemplate = () => {
@@ -110,7 +108,6 @@ export default class FullFormComponent {
                         </div>
                     </div>
                 </div>
-                
             </div>
 
             <div class="row">
@@ -147,5 +144,6 @@ export default class FullFormComponent {
         </form>
     </div>
         `
-    }
+    }   
 }
+

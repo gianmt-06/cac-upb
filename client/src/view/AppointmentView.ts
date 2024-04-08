@@ -1,21 +1,28 @@
 import FullFormComponent from "../components/FullFormComponent.js"
+import ModalManagerInterface from "../types/ModalManagerInterface.js";
+
+import ModalManager from "./ModalManager.js";
+
 import View from "./View.js";
 
-export default class AppointmentView extends View{
+export default class AppointmentView extends View {
 
-    private formComponent = new FullFormComponent('1.099.735.628', 'GianMarco');
+    private formComponent = new FullFormComponent();
+    private dialogManager: ModalManagerInterface;
 
     constructor() {
         super()
+        this.dialogManager = new ModalManager()
     }
 
     public deploy(){
         this.loadView(this.getTemplate());
-        this.formComponent.defineAction(this.doSome)
+        this.dialogManager.notify('ticket');
+        this.formComponent.setAction(this.showTicket)
     }
 
-    public doSome(){
-        console.log('HolaMundoaaaa');   
+    public showTicket(){
+        (document.getElementById('modal-btn') as HTMLButtonElement).click();
     }
 
     private getTemplate() {

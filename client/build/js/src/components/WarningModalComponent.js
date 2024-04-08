@@ -1,8 +1,10 @@
 export default class WarningModalComponent {
+    setAction() {
+    }
     getTemplate() {
         return `
-            <div class="warning-component-modal page-content">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="warning-component-modal page-content" id="warn-modal">
+                <button type="button" class="btn btn-primary modal-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modal-btn">
                     Launch demo modal
                 </button>
 
@@ -24,7 +26,7 @@ export default class WarningModalComponent {
                                 </p>
                                     
                                 <div class="actions">
-                                    <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal">Regresar</button>
+                                    <button type="button" class="btn btn-secondary btn-block" data-bs-dismiss="modal" id="return-btn">Regresar</button>
                                     <button type="button" class="btn btn-danger btn-block">Continuar</button>    
                                 </div>
                             </div>
