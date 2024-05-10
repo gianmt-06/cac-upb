@@ -2,7 +2,7 @@ CREATE DATABASE cacupb;
 \c cacupb;
 
 CREATE TABLE IF NOT EXISTS Clients (
-    idClient INT PRIMARY KEY,
+    idClient SERIAL PRIMARY KEY,
     idClientType INT NOT NULL,
     docNumber VARCHAR(50) UNIQUE NOT NULL,
     nameClient VARCHAR(50) NOT NULL,
@@ -11,14 +11,14 @@ CREATE TABLE IF NOT EXISTS Clients (
 );
 
 CREATE TABLE IF NOT EXISTS ClientTypes (
-    idClientType INT PRIMARY KEY,
+    idClientType SERIAL PRIMARY KEY,
     description VARCHAR(50) NOT NULL
 );
 
 CREATE TYPE userStatusEnum AS ENUM ('Active', 'Inactive');
 
 CREATE TABLE IF NOT EXISTS Users (
-    idUser INT PRIMARY KEY,
+    idUser SERIAL PRIMARY KEY,
     idRol INT NOT NULL,
     idLocation INT NOT NULL,
     nameUser VARCHAR(50) NOT NULL,
@@ -29,23 +29,23 @@ CREATE TABLE IF NOT EXISTS Users (
 );
 
 CREATE TABLE IF NOT EXISTS Roles (
-    idRol INT PRIMARY KEY,
+    idRol SERIAL PRIMARY KEY,
     rolName VARCHAR(50) UNIQUE NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Permissions (
-    idPermission INT PRIMARY KEY,
+    idPermission SERIAL PRIMARY KEY,
     permissionName VARCHAR(50) UNIQUE NOT NULL 
 );
 
 CREATE TABLE IF NOT EXISTS RolesHasPermissions (
-    idRolHasPermission INT PRIMARY KEY,
+    idRolHasPermission SERIAL PRIMARY KEY,
     idRol INT NOT NULL,
     idPermission INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Locations (
-    idLocation INT PRIMARY KEY,
+    idLocation SERIAL PRIMARY KEY,
     nameLocation VARCHAR(50) NOT NULL,
     city VARCHAR(50) NOT NULL,
     address VARCHAR(50) NOT NULL
@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS Locations (
 CREATE TYPE appmntStatusEnum AS ENUM ('active', 'rescheduled' ,'canceled', 'close');
 
 CREATE TABLE IF NOT EXISTS Appointments (
-    idAppmnt INT PRIMARY KEY,
+    idAppmnt SERIAL PRIMARY KEY,
     idClient INT NOT NULL,
     idLocation INT NOT NULL,
     idAppmtType INT NOT NULL,
@@ -65,12 +65,12 @@ CREATE TABLE IF NOT EXISTS Appointments (
 );
 
 CREATE TABLE IF NOT EXISTS AppointmentTypes (
-    idAppmtType INT PRIMARY KEY,
+    idAppmtType SERIAL PRIMARY KEY,
     description VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS UserAppointment (
-    idUserAppmnt INT PRIMARY KEY,
+    idUserAppmnt SERIAL PRIMARY KEY,
     idUser INT NOT NULL,
     idAppmnt INT NOT NULL
 );

@@ -1,6 +1,6 @@
 import Appointment from "../../../model/appointment/Appointment";
 
-export default interface CreateAppmntUseCasePort {
+export default interface CreateAppmntServicePort {
   createAppmnt(appointment: Appointment): Promise<boolean>
 }
   
