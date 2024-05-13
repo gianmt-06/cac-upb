@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS ClientTypes (
     description VARCHAR(50) NOT NULL
 );
 
-CREATE TYPE userStatusEnum AS ENUM ('Active', 'Inactive');
+CREATE TYPE userStatusEnum AS ENUM ('active', 'anactive');
 
 CREATE TABLE IF NOT EXISTS Users (
     idUser SERIAL PRIMARY KEY,
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS Users (
     lastName VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(60) NOT NULL,
-    status userStatusEnum -- Enum
+    status userStatusEnum NOT NULL DEFAULT 'active'
 );
 
 CREATE TABLE IF NOT EXISTS Roles (

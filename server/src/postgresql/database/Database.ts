@@ -1,12 +1,14 @@
 import { Client } from "pg";
-import Environment from "../config/Environment";
+import DatabaseEnvConfig from "../config/DatabaseConfig";
 
 export default class Database {
-    private client: Client;
-    private readonly env: Environment;
+    public static instance: Database;
 
-    constructor(){
-        this.env = new Environment();
+    private client: Client;
+    private readonly env: DatabaseEnvConfig;
+
+    constructor() {
+        this.env = new DatabaseEnvConfig();
         this.client = new Client({
             user: this.env.DATABASE_USER,
             host: this.env.DATABASE_HOST,
@@ -17,14 +19,30 @@ export default class Database {
         this.connect();
     }
 
-    connect(){
-        this.client.connect(function (err) {
-            if (err) throw err;
-            console.log('Connected!');
-        })
+    public static getInstance(): Database {
+        if (!Database.instance) {
+            Database.instance = new Database();
+            console.log('Instance new Database Object');
+        }
+        return Database.instance;
     }
-    
-    query(query: string) {
-        return this.client.query(query)
+
+    connect = () => {
+        try {
+            this.client.connect(err => {
+                if (err) throw err;
+                console.log('Database Connected!');
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    query = (query: string, values?: any[]) => {
+        try {
+            return this.client.query(query, values)
+        } catch (error) {  
+            throw Error
+        }
     }
 }   
