@@ -7,7 +7,7 @@ CREATE VIEW v_users AS SELECT
     email as email,
     password as password,
     status as status
-FROM users; 
+FROM users;
 
 CREATE VIEW v_location AS SELECT 
     idLocation AS locationid,
@@ -16,11 +16,14 @@ CREATE VIEW v_location AS SELECT
     address
  FROM locations;
 
- CREATE VIEW v_clients AS SELECT 
-    idClient as id,
-    idClientType as type,
-    docNumber as docnumber,
-    nameClient as name,
-    lastNameClient as lastname,
-    birthDate as birth
-FROM clients;
+CREATE VIEW v_clients AS 
+SELECT 
+    c.idClient as id,
+    c.idClientType as idtype,
+    ct.description as descriptiontype
+    c.docNumber as docnumber,
+    c.nameClient as name,
+    c.lastNameClient as lastname,
+    c.birthDate as birth
+FROM clients c 
+JOIN ClientTypes ct ON c.idClientType = ct.idClientType;

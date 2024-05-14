@@ -2,8 +2,10 @@ import Repository from "../../../../../shared/infrastructure/repository/Reposito
 import UserDTO from "../../../model/userDTO/UserDTO";
 
 export interface UserRepositoryPort extends Repository<UserDTO, string> {
-    getCredentials: (email: string) => Promise<string>;
+    getCredentials: (email: string) => Promise<{uid: string, hashPassword: string}>;
+    
     changeStatus: (id: string) => Promise<boolean>;
     changePassword: (id: string, newPassword: string) => Promise<boolean>;
+    
     getRoles: () => void;
 }

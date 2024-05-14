@@ -1,11 +1,14 @@
 import ExpressRouter from "../../../../express/route/ExpressRouter";
 import Database from "../../../../postgresql/database/Database";
 import CreateClientService from "../../application/service/CreateClient/CreateClientService";
+import GetClientService from "../../application/service/GetClient/GetClientService";
 import CreateClientUseCase from "../../application/usecase/CreateClient/CreateClientUseCase";
-import ClientController from "../express/controller/UserController";
+import GetClientUseCase from "../../application/usecase/GetClient/GetClientUseCase";
+import ClientController from "../express/controller/ClientController";
 import ClientRouter from "../express/router/ClientRouter";
 import ClientRepository from "../repository/ClientRepository.ts/ClientRepository";
 import CreateClientRepository from "../repository/CreateClient/CreateClientRepository";
+import GetClientRepository from "../repository/GetClient/GetClientRepository";
 
 export default class ClientFactory {
     
@@ -17,8 +20,13 @@ export default class ClientFactory {
         const createClientService = new CreateClientService(createClientRepo);
         const createClientUseCase = new CreateClientUseCase(createClientService);
 
+        const getClientRepo = new GetClientRepository(userRepository);
+        const getClientService = new GetClientService(getClientRepo);
+        const getClientUseCase = new GetClientUseCase(getClientService)
+
         const clientController = new ClientController(
-            createClientUseCase
+            createClientUseCase,
+            getClientUseCase
         )
 
         return new ClientRouter(clientController)

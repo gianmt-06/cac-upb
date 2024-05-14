@@ -6,7 +6,10 @@ export default class NullClient extends AbstractClient {
             'not found name in database',
             'not found lastname in database',
             'not found document number in database',
-            'not found type in database',
+            {
+                id: 'not found id type in database',
+                description: 'not found description type in database'
+            },
             new Date(),
             'not found id in database'
         );

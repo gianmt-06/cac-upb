@@ -5,20 +5,32 @@ import ClientDatabaseConection from "../../postgresql/ClientDatabaseConection";
 
 export default class ClientRepository implements ClientRepositoryPort {
     private readonly databaseActions: DBActionsConfig;
+    
+    getAll!: () => Promise<ClientDTO[]>;
+    delete!: (key: string) => Promise<boolean>;
 
     constructor(private readonly databaseConection: ClientDatabaseConection){
         this.databaseActions = new DBActionsConfig();
     }
 
-    getOne!: (key: string) => Promise<ClientDTO>;
-    getAll!: () => Promise<ClientDTO[]>;
+    getOne = async(key: string): Promise<ClientDTO> => {
+        try {
+            const { rows } = await this.databaseConection.query(
+                this.databaseActions.GET_CLIENT,
+                [key]
+            )
+            return rows[0] as ClientDTO;
+        } catch (error) {
+            throw Error
+        }
+    }
     
     save = async(client: ClientDTO):  Promise<boolean> => {
         try {
             await this.databaseConection.query(
                 this.databaseActions.CREATE_CLIENT,
                 [
-                    client.type,
+                    client.idtype,
                     client.docnumber,
                     client.name,
                     client.lastname,
@@ -30,6 +42,6 @@ export default class ClientRepository implements ClientRepositoryPort {
             throw Error
         }
     }
+    
     update!: (key: string, partial: ClientDTO) => Promise<boolean>;
-    delete!: (key: string) => Promise<boolean>;
 }

@@ -11,7 +11,7 @@ export default class Express {
 
     constructor(
         private readonly expressRouter: ExpressRouter[]
-    ) {
+    ){
         this.app = express();
         this.env = new Environment();
         this.config();

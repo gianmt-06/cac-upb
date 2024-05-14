@@ -1,6 +1,7 @@
 export default interface ClientDTO {
     id: string,
-    type: string,
+    idtype: string,
+    descriptiontype?: string,
     docnumber: string,
     name: string,
     lastname: string,

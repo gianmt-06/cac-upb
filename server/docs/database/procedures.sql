@@ -10,7 +10,7 @@ CREATE PROCEDURE create_user (
 LANGUAGE SQL 
 AS $$
     INSERT 
-    INTO v_users (idRol, idLocation, nameUser, lastName, email, password)
+    INTO v_users (rolid, idLocation, name, lastName, email, password)
     VALUES (new_rolId, new_locationId, new_name, new_lastName, new_email, new_password);
 $$;
 
@@ -39,6 +39,22 @@ RETURNS SETOF v_users
 AS 
 $$
   SELECT * FROM v_users WHERE uid = id;
+$$ LANGUAGE sql;
+
+-- GET USER BY EMAIL
+CREATE OR REPLACE FUNCTION get_user_by_email(in_email VARCHAR(50))
+RETURNS SETOF v_users 
+AS 
+$$
+  SELECT * FROM v_users WHERE email = in_email;
+$$ LANGUAGE sql;
+
+-- GET CLIENT BY ID
+CREATE OR REPLACE FUNCTION get_client(cid INT)
+RETURNS SETOF v_clients
+AS 
+$$
+  SELECT * FROM v_clients WHERE id = cid;
 $$ LANGUAGE sql;
 
 -- GET LOCATION BY ID

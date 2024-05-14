@@ -22,7 +22,6 @@ export default class Database {
     public static getInstance(): Database {
         if (!Database.instance) {
             Database.instance = new Database();
-            console.log('Instance new Database Object');
         }
         return Database.instance;
     }
@@ -31,7 +30,6 @@ export default class Database {
         try {
             this.client.connect(err => {
                 if (err) throw err;
-                console.log('Database Connected!');
             })
         } catch (error) {
             console.log(error);

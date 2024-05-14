@@ -27,11 +27,13 @@ export default class UserRepository implements UserRepositoryPort {
 
     save = (user: UserDTO): Promise<boolean> => {
         try {
+            console.log(user);
+            
             this.databaseConection.query(
                 this.databaseActions.CREATE_USER,
                 [
-                    user.rolId,
-                    user.idlocation,
+                    user.rolid,
+                    user.locationid,
                     user.name,
                     user.lastname,
                     user.email,
@@ -50,8 +52,8 @@ export default class UserRepository implements UserRepositoryPort {
                 this.databaseActions.UPDATE_USER,
                 [
                     key,
-                    partial.rolId,
-                    partial.idlocation,
+                    partial.rolid,
+                    partial.locationid,
                     partial.name,
                     partial.lastname,
                     partial.email,
@@ -60,11 +62,32 @@ export default class UserRepository implements UserRepositoryPort {
             )
             return true
         } catch (error) {
-            throw Error
+            throw new Error('Error al actualizar los datos de usuario')
         }
     };
 
-    getCredentials!: (email: string) => Promise<string>;
+    //TODO: implement procedure in database
+
+    getUserByEmail = async(email: string): Promise<UserDTO> => {
+        try {
+            const { rows } = await this.databaseConection.query(
+                this.databaseActions.GET_USER_BY_EMAIL, [email]
+            )
+            return rows[0] as UserDTO;
+        } catch (error) {
+            throw new Error('Error al obtener usuario')
+        }
+    }
+
+    getCredentials = async(email: string):  Promise<{uid: string, hashPassword: string}> => {
+        try {
+            const user = await this.getUserByEmail(email);
+            return {uid: user.uid, hashPassword: user.password || ''}
+        } catch (error) {
+            throw new Error('Error al obtener credenciales')
+        }
+    }
+
     changeStatus!: (id: string) => Promise<boolean>;
     changePassword!: (id: string, newPassword: string) => Promise<boolean>;
     getRoles!: () => void;

@@ -1,18 +1,23 @@
 import AbstractPerson from "../../../../shared/domain/model/person/AbstractPerson";
 
+interface clientType {
+    id: string,
+    description: string
+}
+
 export default abstract class AbstractClient extends AbstractPerson {
     protected idClient: string;
-    protected typeClient: string;
+    protected typeClient: clientType
     protected birth: Date;
 
     constructor(
-        name: string, 
-        lastname: string, 
-        docNumber: string, 
-        typeClient: string, 
+        name: string,
+        lastname: string,
+        docNumber: string,
+        typeClient: clientType,
         birth: Date,
         idClient: string
-    ){
+    ) {
         super(
             name,
             lastname,
@@ -34,11 +39,11 @@ export default abstract class AbstractClient extends AbstractPerson {
         this.idClient = id;
     }
 
-    public getType(): string {
+    public getType(): clientType {
         return this.typeClient;
     }
 
-    public setType(type: string) {
+    public setType(type: clientType) {
         this.typeClient = type;
     }
 
