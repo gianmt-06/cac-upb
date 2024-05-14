@@ -1,5 +1,5 @@
 import Appointment from "../../../domain/model/appointment/Appointment";
-import NullClient from "../../../domain/model/client/NullClient";
+import NullClient from "../../../../client/domain/model/client/NullClient";
 import NullLocation from "../../../../location/domain/model/location/NullLocation";
 import CreateAppmntUseCasePort from "../../../domain/port/driver/CreateAppmnt/CreateAppmntUseCasePort";
 import { Request, Response } from "express";

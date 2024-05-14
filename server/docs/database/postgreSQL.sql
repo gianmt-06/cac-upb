@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS Users (
     idUser SERIAL PRIMARY KEY,
     idRol INT NOT NULL,
     idLocation INT NOT NULL,
+    docNumber VARCHAR(50) NOT NULL,
     nameUser VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,

@@ -6,7 +6,7 @@ import AppointmentRouter from "../express/router/AppointmentRouter";
 import CreateAppmntRepository from "../repository/AppointmentRepository/CreateAppmnt/CreateAppmntRepository";
 
 export default class AppointmentFactory {
-    public createRouter = (): ExpressRouter => {
+    public static createRouter = (): ExpressRouter => {
         const createAppmntRepo = new CreateAppmntRepository();
         const createAppmntService = new CreateAppmntService(createAppmntRepo);
         const createAppmntUsecase = new CreateAppmntUseCase(createAppmntService);

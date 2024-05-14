@@ -1,5 +1,5 @@
 export default interface LocationDTO {
-    locationId?: string;
+    locationid?: string;
     city: string;
     name: string;
     address: string;

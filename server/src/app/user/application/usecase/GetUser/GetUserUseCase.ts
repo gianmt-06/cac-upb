@@ -4,12 +4,10 @@ import GetUserServicePort from '../../../domain/port/driver/GetUser/GetUserServi
 import GetUserUseCasePort from '../../../domain/port/driver/GetUser/GetUserUseCasePort'
 
 export default class GetUserUseCase implements GetUserUseCasePort {
-  name: string
+  constructor(private readonly getUserService: GetUserServicePort) {}
 
-  constructor(
-    private readonly getUserService: GetUserServicePort
-  ) {
-    this.name = 'GetUserUseCase'
+  public static readonly getClassName = (): string => {
+    return 'GetUserUseCase';
   }
 
   public getUserById = async (id: string): Promise<AbstractUser> => {

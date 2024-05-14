@@ -33,4 +33,3 @@
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules", "env", "config", "docs", "logs", "build"]
 }
-

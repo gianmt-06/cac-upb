@@ -1,20 +1,20 @@
 import NullUser from '../../../domain/model/user/NullUser'
 import AbstractUser from '../../../domain/model/user/AbstractUser'
 import GetUserRepositoryPort from '../../../domain/port/driven/GetUser/GetUserRepositoryPort'
-import { UserRepositoryInterface } from '../UserRepositoryInterface'
+import { UserRepositoryPort } from '../../../domain/port/driven/UserRepository/UserRepositoryPort'
 import User from '../../../domain/model/user/User'
 import GetLocationRepositoryPort from '../../../../location/domain/port/driven/GetLocation/GetLocationRepositoryPort'
 
 export default class GetUserRepository implements GetUserRepositoryPort {
-  name: string
-
   constructor(
-    private readonly userRepository: UserRepositoryInterface,
+    private readonly userRepository: UserRepositoryPort,
     private readonly getLocationRepository: GetLocationRepositoryPort 
-  ) {
-    this.name = 'GetUserRepository'
-  }
+  ) {}
   
+  public static readonly getClassName = (): string => {
+    return 'GetUserRepository';
+  }
+
   getUserById = async(id: string): Promise<AbstractUser> => {
     try {
       const user = await this.userRepository.getOne(id);

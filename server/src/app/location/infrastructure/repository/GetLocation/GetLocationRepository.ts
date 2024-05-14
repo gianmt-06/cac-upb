@@ -2,7 +2,7 @@
 import Location from '../../../domain/model/location/Location'
 import NullLocation from '../../../domain/model/location/NullLocation'
 import GetLocationRepositoryPort from '../../../domain/port/driven/GetLocation/GetLocationRepositoryPort'
-import LocationRepository from '../LocationRepository'
+import LocationRepository from '../LocationRepository/LocationRepository'
 
 export default class GetLocationRepository implements GetLocationRepositoryPort {
   name: string
@@ -16,9 +16,9 @@ export default class GetLocationRepository implements GetLocationRepositoryPort 
   public getLocation = async (id: string): Promise<Location> => {
     try {
       const location = await this.locationRepository.getOne(id);
-
+      
       return new Location(
-        location.locationId || '',
+        location.locationid || '',
         location.city,
         location.name,
         location.address

@@ -1,4 +1,4 @@
-import Client from "../client/Client";
+import Client from "../../../../client/domain/model/client/Client";
 import Location from "../../../../location/domain/model/location/Location";
 import AbstractUser from "../../../../user/domain/model/user/AbstractUser";
 

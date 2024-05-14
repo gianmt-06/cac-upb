@@ -1,4 +1,4 @@
-import NullClient from "../client/NullClient";
+import NullClient from "../../../../client/domain/model/client/NullClient";
 import NullLocation from "../../../../location/domain/model/location/NullLocation";
 import AbstractAppointment from "./AbstractAppointment";
 

@@ -1,15 +1,14 @@
 
 import CreateUserRepositoryPort from '../../../domain/port/driven/CreateUser/CreateUserRepositoryPort'
 import UserDTO from '../../../domain/model/userDTO/UserDTO'
-import { UserRepositoryInterface } from '../UserRepositoryInterface'
+import { UserRepositoryPort } from '../../../domain/port/driven/UserRepository/UserRepositoryPort'
 
 export default class CreateUserRepository implements CreateUserRepositoryPort {
-  name: string
 
-  constructor(
-    private readonly userRepository: UserRepositoryInterface
-    ) {
-    this.name = 'CreateUserRepository'
+  constructor(private readonly userRepository: UserRepositoryPort) {}
+
+  public static readonly getClassName = (): string => {
+    return 'CreateUserRepository';
   }
 
   createUser = async(user: UserDTO): Promise<boolean> => {

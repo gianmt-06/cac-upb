@@ -4,12 +4,10 @@ import CreateUserServicePort from '../../../domain/port/driver/CreateUser/Create
 import CreateUserUseCasePort from '../../../domain/port/driver/CreateUser/CreateUserUseCasePort'
 
 export default class CreateUserUseCase implements CreateUserUseCasePort {
-  name: string
+  constructor(private readonly createUserServicePort: CreateUserServicePort) {}
 
-  constructor(
-    private readonly createUserServicePort: CreateUserServicePort
-  ) {
-    this.name = 'CreateUserUseCase'
+  public static readonly getClassName = (): string => {
+    return 'CreateUserUseCase';
   }
 
   public createUser = async (user: UserDTO): Promise<boolean> => {

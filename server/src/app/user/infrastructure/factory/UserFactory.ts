@@ -9,11 +9,11 @@ import CreateUserUseCase from "../../application/usecase/CreateUser/CreateUserUs
 import CreateUserRepository from "../repository/CreateUser/CreateUserRepository";
 
 import GetUserRepository from "../repository/GetUser/GetUserRepository";
-import UserRepository from "../repository/UserRepository";
+import UserRepository from "../repository/UserRepository/UserRepository";
 import GetUserUseCase from "../../application/usecase/GetUser/GetUserUseCase";
 import GetUserService from "../../application/service/GetUser/GetUserService";
 import GetLocationRepository from "../../../location/infrastructure/repository/GetLocation/GetLocationRepository";
-import LocationRepository from "../../../location/infrastructure/repository/LocationRepository";
+import LocationRepository from "../../../location/infrastructure/repository/LocationRepository/LocationRepository";
 
 export default class UserFactory {
     
