@@ -17,7 +17,10 @@ export default class AppointmentRouter implements ExpressRouter {
     }
 
     setRoutes = () => {
-        this.router.get('/appointments', this.appmntController.createAppmnt.bind(this.appmntController));
+        this.router.get('/healty', this.appmntController.checkHealty.bind(this.appmntController));
+        this.router.post('/create', this.appmntController.createAppmnt.bind(this.appmntController));
+        this.router.post('/update/:idAppmnt', this.appmntController.updateAppmnt.bind(this.appmntController));
+        this.router.delete('/:idAppmnt', this.appmntController.deleteAppmnt.bind(this.appmntController));
     };
 
 }

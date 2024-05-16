@@ -27,3 +27,19 @@ SELECT
     c.birthDate as birth
 FROM clients c 
 JOIN ClientTypes ct ON c.idClientType = ct.idClientType;
+
+CREATE VIEW v_appmnts AS 
+SELECT 
+    a.idappmnt as id,
+    a.idclient as clientid,
+    a.idlocation as locationid,
+    a.idappmttype as idtype,
+    at.description as descriptiontype,
+    a.codeappmnt as code,
+    a.description as description,
+    a.status as status,
+    a.date as date
+FROM appointments a 
+JOIN appointmentTypes at on a.idappmtType = at.idappmtType;
+
+SELECT enum_range(null::appmntstatusenum);

@@ -1,23 +1,12 @@
-
-import Appointment from '../../../domain/model/appointment/Appointment'
-import CreateAppmntPort from '../../../domain/port/driven/CreateAppmntPort'
+import AppmntDTO from '../../../domain/model/AppointmentDTO/AppmntDTO'
+import CreateAppmntRepositoryPort from '../../../domain/port/driven/CreateAppmnt/CreateAppmntRepositoryPort'
 import CreateAppmntServicePort from '../../../domain/port/driver/CreateAppmnt/CreateAppmntServicePort'
 
 export default class CreateAppmntService implements CreateAppmntServicePort {
-  name: string
+  constructor(private readonly createAppointmentRepository: CreateAppmntRepositoryPort){}
 
-  constructor(
-    private readonly createAppointment: CreateAppmntPort
-  ) {
-    this.name = 'CreateAppmntService'
-  }
-
-  public createAppmnt = async (appointment: Appointment): Promise<boolean> => {
-    console.log('peticion');
-    
-    console.log(appointment);
-    
-    return await this.createAppointment.create();
+  createAppmnt = async(appointment: AppmntDTO): Promise<boolean> => {
+    return await this.createAppointmentRepository.createAppmnt(appointment)
   }
 }
   

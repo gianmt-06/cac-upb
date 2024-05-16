@@ -1,6 +1,6 @@
-import Appointment from "../../../model/appointment/Appointment";
+import AppmntDTO from "../../../model/AppointmentDTO/AppmntDTO";
 
 export default interface CreateAppmntServicePort {
-  createAppmnt(appointment: Appointment): Promise<boolean>
+  createAppmnt(appointment: AppmntDTO): Promise<boolean>
 }
   

@@ -59,9 +59,9 @@ CREATE TABLE IF NOT EXISTS Appointments (
     idClient INT NOT NULL,
     idLocation INT NOT NULL,
     idAppmtType INT NOT NULL,
-    codeAppmnt VARCHAR(50) NOT NULL,
+    codeAppmnt VARCHAR(50) UNIQUE NOT NULL,
     description VARCHAR(250) NOT NULL,
-    status appmntStatusEnum,
+    status appmntStatusEnum DEFAULT 'active',
     date TIMESTAMP NOT NULL
 );
 
