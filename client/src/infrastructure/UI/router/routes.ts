@@ -1,55 +1,52 @@
-import RouteInterface from "../../../types/RouteInterface";
+import GetClientUseCaseFactory from "../../../app/client/infrastructure/factory/GetClientUseCaseFactory/GetClientUseCaseFactory";
+import HomeController from "../pages/home/controller/HomeController";
+import HomeView from "../pages/home/view/HomeView";
 
-import HomeController from "../controller/HomeController";
-import HomeView from "../view/HomeView";
+import RescheduleController from "../pages/rescheduleAppointment/controller/RescheduleController";
+import RescheduleView from "../pages/rescheduleAppointment/view/RescheduleView";
 
-import NotFoundController from "../controller/NotFoundController";
-import NotFoundView from "../view/NotFoundView";
+import ScheduleController from "../pages/scheduleAppointment/controller/ScheduleController";
+import ScheduleView from "../pages/scheduleAppointment/view/ScheduleView";
 
-import AppointmentController from "../controller/AppointmentController";
-import AppointmentModel from "../../../domain/model/AppointmentModel";
-import AppointmentView from "../view/AppointmentView";
+import NotFoundController from "../shared/pages/notFound/controller/NotFoundController";
+import NotFoundView from "../shared/pages/notFound/view/NotFoundView";
 
-import ModifyAppmtController from "../controller/ModifyAppmtController";
-import ModifyAppmtView from "../view/ModifyAppmtView";
-import ModifyAppmtModel from "../../../domain/model/ModifyAppmtModel";
+import RouteInterfaceN from "../types/RouteInterface";
 
-import CancelAppmtController from "../controller/CancelAppmtController";
-import CancelAppmtView from "../view/CancelAppmtView";
-import CancelAppmtModel from "../../../domain/model/CancelAppmtModel";
+const layout = document.getElementById('app') as HTMLElement
 
-export const routes: RouteInterface[] = [
+export const routes: RouteInterfaceN[] = [
     {
         name: 'home',
         path: 'home',
-        routeController: new HomeController(new HomeView()),
+        routeController: new HomeController(new HomeView(layout))
     },
     {
         name: 'citas',
         path: 'citas',
-        routeController: new AppointmentController(new AppointmentView(), new AppointmentModel()),
+        routeController: new ScheduleController(new ScheduleView(layout), GetClientUseCaseFactory.createUseCase()),
         childrens: [
             {
                 name: 'reagendar',
                 path: 'modify',
-                routeController: new ModifyAppmtController(new ModifyAppmtView(), new ModifyAppmtModel()),
-                childrens: [
-                    {
-                        path: ':id',
-                        routeController: new AppointmentController(new AppointmentView(), new AppointmentModel()),
-                    }
-                ]
-            },
-            {
-                name: 'cancelar',
-                path: 'cancel',
-                routeController: new CancelAppmtController(new CancelAppmtView(), new CancelAppmtModel())
+                routeController: new RescheduleController(new RescheduleView(layout)),
+                // childrens: [
+                //     {
+                //         path: ':id',
+                //         routeController: new AppointmentController(new AppointmentView(), new AppointmentModel()),
+                //     }
+                // ]
             }
+        //     {
+        //         name: 'cancelar',
+        //         path: 'cancel',
+        //         routeController: new CancelAppmtController(new CancelAppmtView(), new CancelAppmtModel())
+        //     }
         ]
     },
     {
         name: 'notFound',
         path: 'notFound',
-        routeController: new NotFoundController(new NotFoundView())
+        routeController: new NotFoundController(new NotFoundView(layout))
     }
 ]
