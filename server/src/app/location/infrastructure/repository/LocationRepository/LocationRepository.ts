@@ -22,6 +22,8 @@ export default class LocationRepository implements LocationRepositoryPort {
     getAll = async (): Promise<LocationDTO[]> => {
         try {
            const { rows } = await this.databaseConectionPort.query(this.databaseActions.GET_LOCATIONS) ;
+          
+           
            return rows as LocationDTO[];
         } catch (error) {
             throw Error

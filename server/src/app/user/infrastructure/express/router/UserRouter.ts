@@ -13,7 +13,7 @@ export default class UserRouter implements ExpressRouter {
         this.router = Router();
         this.path = '/user'
         this.version = 'v1.0'
-        this.setRoutes();  
+        this.setRoutes();
     }
 
     setRoutes = () => {

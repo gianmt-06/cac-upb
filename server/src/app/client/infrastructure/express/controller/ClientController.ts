@@ -26,8 +26,8 @@ export default class ClientController {
             const id = req.params.idClient;
             const user = this.getClientUseCase.getClient(id);
 
-            user.then(value => {                
-                res.status(200).json({client: value});
+            user.then(client => {                
+                res.status(200).json({client});
             })
             
         } catch (error) {

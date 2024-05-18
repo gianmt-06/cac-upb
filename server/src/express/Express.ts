@@ -1,6 +1,6 @@
 
 import express, { Application } from 'express'
-// import cors from 'cors';
+import cors from 'cors';
 import Environment from './config/Environment';
 import ExpressRouter from './route/ExpressRouter';
 import bodyParser from 'body-parser';
@@ -26,6 +26,7 @@ export default class Express {
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(bodyParser.json());
+        this.app.use(cors());
     }
 
     routes = (): void => {

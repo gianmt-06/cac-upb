@@ -7,5 +7,7 @@ export default interface AppmntDTO {
     date: string,
     clientid: string,
     userid?: string,
-    location?: string
+    locationid?: string
 }
+
+

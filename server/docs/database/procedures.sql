@@ -103,6 +103,13 @@ $$
   SELECT * FROM v_clients WHERE id = cid;
 $$ LANGUAGE sql;
 
+CREATE OR REPLACE FUNCTION get_client_by_doc(document VARCHAR(50))
+RETURNS SETOF v_clients
+AS 
+$$
+  SELECT * FROM v_clients WHERE docnumber = document;
+$$ LANGUAGE sql;
+
 -- GET LOCATION BY ID
 CREATE OR REPLACE FUNCTION get_location(id INT)
 RETURNS SETOF v_location 

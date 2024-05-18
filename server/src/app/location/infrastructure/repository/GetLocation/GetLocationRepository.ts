@@ -17,6 +17,8 @@ export default class GetLocationRepository implements GetLocationRepositoryPort 
     try {
       const location = await this.locationRepository.getOne(id);
       
+      console.log(location);
+      
       return new Location(
         location.locationid || '',
         location.city,

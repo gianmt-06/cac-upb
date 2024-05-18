@@ -1,20 +1,23 @@
+import AbstractClient from "../../../../client/domain/model/Client/AbstractClient";
 import Client from "../../../../client/domain/model/Client/Client";
 import Location from "../../../../location/domain/model/location/Location";
 import AbstractUser from "../../../../user/domain/model/user/AbstractUser";
+import AbstractAppmntType from "../AppointmentType/AbstractAppmntType";
+import AppmntType from "../AppointmentType/AppmntType";
 
 export default abstract class AbstractAppointment {
     protected idAppmnt!: string;
-    protected appmntType: string;
+    protected appmntType: AbstractAppmntType;
     protected code: string;
     protected description: string;
     protected status: string;
     protected date: Date;
-    protected client: Client;
+    protected client: AbstractClient;
     protected User?: AbstractUser;
     protected location: Location;
 
     constructor(
-        appmntType: string,
+        appmntType: AppmntType,
         code: string,
         description: string,
         status: string,
@@ -41,11 +44,11 @@ export default abstract class AbstractAppointment {
         this.idAppmnt = idAppmnt;
     }
 
-    public getType(): string {
+    public getType(): AppmntType {
         return this.appmntType
     }
     
-    public setType(type: string) {
+    public setType(type: AppmntType) {
         this.appmntType = type;
     }
 

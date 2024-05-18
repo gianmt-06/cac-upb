@@ -1,7 +1,7 @@
 import DBActionsConfig from "../../../../../postgresql/config/DatabaseActions";
 import AppmntDatabaseConection from "../../postgresql/AppmntDatabaseConection";
-import { AppmntRepositoryPort } from "../../../domain/port/driven/AppmntRepository/AppointmentRepositoryPort";
 import AppmntDTO from "../../../domain/model/AppointmentDTO/AppmntDTO";
+import { AppmntRepositoryPort } from "../../../domain/port/driven/AppmntRepository/AppointmentRepositoryPort";
 
 export default class AppmntRepository implements AppmntRepositoryPort {
     private readonly databaseActions: DBActionsConfig;
@@ -10,8 +10,21 @@ export default class AppmntRepository implements AppmntRepositoryPort {
         this.databaseActions = new DBActionsConfig();
     }
 
-    getOne!: (key: string) => Promise<AppmntDTO>;
+    getByCode!: (codeAppmnt: string) => Promise<AppmntDTO>;
+  
     getAll!: () => Promise<AppmntDTO[]>;
+
+    getOne = async (code: string):Promise<AppmntDTO> => {
+        try {
+            const {rows} = await this.databaseConection.query(
+                this.databaseActions.GET_APPOINTMENT_BY_CODE,
+                [code]
+            )
+            return rows[0] as AppmntDTO;
+        } catch (error) {
+            throw Error
+        }
+    }
     
     save = async (appmnt: AppmntDTO): Promise<boolean> => {
         try {
@@ -19,7 +32,7 @@ export default class AppmntRepository implements AppmntRepositoryPort {
                 this.databaseActions.CREATE_APPOINTMENT,
                 [
                     appmnt.clientid,
-                    appmnt.location,
+                    appmnt.locationid,
                     appmnt.type,
                     appmnt.code,
                     appmnt.description,
@@ -28,6 +41,8 @@ export default class AppmntRepository implements AppmntRepositoryPort {
             )
             return true;
         } catch (error) {
+            console.log(error);
+            
             throw new Error("Error al crear la cita");
         }
     };
@@ -38,7 +53,7 @@ export default class AppmntRepository implements AppmntRepositoryPort {
                 this.databaseActions.UPDATE_APPOINTMENT,
                 [
                     key,
-                    partial.location,
+                    partial.locationid,
                     partial.type,
                     partial.description,
                     partial.date
@@ -59,5 +74,5 @@ export default class AppmntRepository implements AppmntRepositoryPort {
         } catch (error) {
             throw new Error("Error al eliminar la cita")
         }
-    }  
+    }
 }

@@ -27,9 +27,8 @@ export default abstract class AbstractClient extends AbstractPerson {
         this.typeClient = typeClient;
         this.birth = birth;
         this.idClient = idClient
+        
     }
-
-    public abstract isNull(): boolean;
 
     public getId(): string {
         return this.idClient;

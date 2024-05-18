@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS Locations (
     idLocation SERIAL PRIMARY KEY,
     nameLocation VARCHAR(50) NOT NULL,
     city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
     address VARCHAR(50) NOT NULL
 );
 
@@ -75,6 +76,15 @@ CREATE TABLE IF NOT EXISTS UserAppointment (
     idUser INT NOT NULL,
     idAppmnt INT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS Availability (
+    idAvailability SERIAL PRIMARY KEY,
+    idLocation INT NOT NULL,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    totalAppmnts INT NOT NULL,
+    asignedAppmnts INT NOT NULL
+)
 
 -- FOREIGN KEYS 
 ALTER TABLE Clients ADD CONSTRAINT fk_client_clienttype FOREIGN KEY (idClientType) REFERENCES ClientTypes(idClientType);
