@@ -2,11 +2,11 @@ import AbstractAppointment from "../../../../appointment/domain/model/appointmen
 
 export default class AbstractTicket {
     private code: string;
-    private priority: string;
+    private priority: number;
     private status: string;
     private appointment: AbstractAppointment;
     
-    constructor(code: string, priority: string, status: string, appointment: AbstractAppointment){
+    constructor(code: string, priority: number, status: string, appointment: AbstractAppointment){
         this.code = code;
         this.priority = priority;
         this.status = status;
@@ -21,10 +21,10 @@ export default class AbstractTicket {
         this.code = value;
     }
     
-    public getPriority(): string {
+    public getPriority(): number {
         return this.priority;
     }
-    public setPriority(value: string) {
+    public setPriority(value: number) {
         this.priority = value;
     }
     

@@ -1,15 +1,15 @@
 
+import Ticket from '../../../domain/model/Ticket/Ticket';
+import GetNextTicketRepositoryPort from '../../../domain/port/driven/GetNextTicket/GetNextTicketRepositoryPort';
 import GetNextTicketServicePort from '../../../domain/port/driver/GetNextTicket/GetNextTicketServicePort'
 
 export default class GetNextTicketService implements GetNextTicketServicePort {
-  name: string
+  constructor(private readonly getNextTicketRepository: GetNextTicketRepositoryPort){}
 
-  constructor() {
-    this.name = 'GetNextTicketService'
+  getNextTicket = async(): Promise<Ticket> =>{
+    return await this.getNextTicketRepository.getNextTicket();
   }
 
-  public execute = async (): Promise<string> => {
-    return 'Hello from GetNextTicketService'
-  }
+  
 }
   

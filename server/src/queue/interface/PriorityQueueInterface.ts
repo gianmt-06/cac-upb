@@ -5,4 +5,5 @@ export default interface PriorityQueueInterface<T> {
     extract: () => T;
     getPriorityQueue:    (priority: number) => DynamicQueue<T>;
     print: () => void;
+    getPriorityQuant: () => number;
 }

@@ -38,8 +38,11 @@ export default class PriorityQueue<T> implements PriorityQueueInterface<T> {
         for(let i = 0; i < this.dinamycQueue.length; i++){
             console.log("PRIORIDAD " + i);
             console.log("ELEMENTOS:");
-            this.dinamycQueue[i]
             console.log(this.dinamycQueue[i].getList());
         }
+    }
+
+    public getPriorityQuant = (): number => {
+        return this.dinamycQueue.length
     }
 }

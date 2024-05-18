@@ -1,6 +1,6 @@
 import { Router } from "express";
 import ExpressRouter from "../../../../../express/route/ExpressRouter";
-import LocationController from "../controller/LocationController";
+import TicketController from "../controller/TicketController";
 
 export default class TicketRouter implements ExpressRouter {
     router: Router;
@@ -8,7 +8,7 @@ export default class TicketRouter implements ExpressRouter {
     version: string;
 
     constructor (
-        private readonly locationController: LocationController  
+        private readonly ticketController: TicketController  
     ) {
         this.router = Router();
         this.path = '/ticket'
@@ -17,6 +17,8 @@ export default class TicketRouter implements ExpressRouter {
     }
 
     setRoutes = () => {
-        this.router.post('/add', this.locationController.getLocations.bind(this.locationController))
+        this.router.get('/next', this.ticketController.getNext.bind(this.ticketController))
+        this.router.get('/queue', this.ticketController.getQueue.bind(this.ticketController))
+        this.router.post('/add', this.ticketController.getLocations.bind(this.ticketController))
     };
 }

@@ -5,7 +5,7 @@ export default class NullTicket extends AbstractTicket {
     constructor(){
         super(
             'no code found',
-            'no priority found',
+            0,
             'no status found',
             new NullAppointment()
         )
