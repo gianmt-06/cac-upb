@@ -31,6 +31,7 @@ export default class ClientRepository implements ClientRepositoryPort {
                 this.databaseActions.CREATE_CLIENT,
                 [
                     client.idtype,
+                    client.doctype,
                     client.docnumber,
                     client.name,
                     client.lastname,

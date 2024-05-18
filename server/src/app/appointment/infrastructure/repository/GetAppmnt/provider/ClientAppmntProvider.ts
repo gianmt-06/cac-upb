@@ -2,7 +2,7 @@ import Database from "../../../../../../postgresql/database/Database";
 import AbstractClient from "../../../../../client/domain/model/Client/AbstractClient";
 import NullClient from "../../../../../client/domain/model/Client/NullClient";
 import GetClientRepositoryPort from "../../../../../client/domain/port/driven/GetClient/GetClientRepositoryPort";
-import ClientRepository from "../../../../../client/infrastructure/repository/ClientRepository.ts/ClientRepository";
+import ClientRepository from "../../../../../client/infrastructure/repository/ClientRepository/ClientRepository";
 import GetClientRepository from "../../../../../client/infrastructure/repository/GetClient/GetClientRepository";
 
 export default class ClientAppmntProvider {

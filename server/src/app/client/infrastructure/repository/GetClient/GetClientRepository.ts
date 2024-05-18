@@ -20,18 +20,16 @@ export default class GetClientRepository implements GetClientRepositoryPort {
           databaseClient.docnumber,
           {
             id: databaseClient.idtype,
-            description: databaseClient.descriptiontype || ''
+            description: databaseClient.idtype
           },
           new Date(databaseClient.birth),
           databaseClient.id
         )
       }
 
-      return new NullClient()
-
+      return new NullClient();
     } catch (error) {
-      console.log(error);
-      return new NullClient()
+      return new NullClient();
     }
   }
 }

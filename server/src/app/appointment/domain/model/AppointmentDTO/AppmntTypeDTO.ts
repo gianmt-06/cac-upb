@@ -1,4 +1,4 @@
 export default interface AppmntTypeDTO {
-    idappmttype: string,
+    id: string,
     description: string
 }

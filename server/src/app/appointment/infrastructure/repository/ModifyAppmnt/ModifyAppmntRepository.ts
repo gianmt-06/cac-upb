@@ -6,8 +6,8 @@ import ModifyAppmntRepositoryPort from '../../../domain/port/driven/ModifyAppmnt
 export default class ModifyAppmntRepository implements ModifyAppmntRepositoryPort {
   constructor(private readonly AppmntRepository: AppmntRepositoryPort){}
 
-  modifyAppmt(id: string, partialAppmnt: AppmntDTO): Promise<boolean> {
-    return this.AppmntRepository.update(id, partialAppmnt);
+  modifyAppmt = async(id: string, partialAppmnt: AppmntDTO): Promise<boolean> => {
+    return await this.AppmntRepository.update(id, partialAppmnt);
   }
 }
   

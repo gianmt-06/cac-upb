@@ -4,4 +4,4 @@ INSERT INTO AppointmentTypes(description) VALUES ('Quejas'), ('Reclamos'), ('Inf
 
 INSERT INTO Roles(rolName) VALUES ('Sede'), ('Admin'), ('Asesor');
 
-INSERT INTO Locations(nameLocation, city, address) VALUES ('Universidad Pontificia Bolivariana', 'Bucaramanga', 'Autopista');
+INSERT INTO Locations(nameLocation, city, state, address) VALUES ('Universidad Pontificia Bolivariana', 'Bucaramanga', 'Santander', 'Autopista');

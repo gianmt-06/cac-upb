@@ -16,7 +16,7 @@ export default class GetLocationsRepository implements GetLocationsRepositoryPor
           
         if(!databaseLocation) return new NullLocation()
           return new Location(
-            databaseLocation.locationid || "",
+            databaseLocation.id || "",
             databaseLocation.city,
             databaseLocation.name,
             databaseLocation.address

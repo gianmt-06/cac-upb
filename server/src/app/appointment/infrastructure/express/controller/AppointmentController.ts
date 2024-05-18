@@ -15,6 +15,8 @@ export default class AppointmentController {
         private readonly getAppmntTypesUseCase: GetAppmntTypesUseCasePort
     ){}
 
+    // Type: BODY
+    // code: string, docClient:string, date:string; 
     public getAppmnt = (req: Request, res: Response): void => {
       try {
           const {code, docClient, date} = req.body;
@@ -30,11 +32,10 @@ export default class AppointmentController {
       }
   }
 
+    // Type: BODY
+    // clientid: number, locationid:number, idtype:number, description:string, date:string, time:string; 
     public createAppmnt = (req: Request, res: Response): void => {
         try {
-            console.log('bodyy'); 
-            console.log(req.body) ;
-          
             const appointment = req.body as AppmntDTO;
             this.createAppointmentUseCase.createAppmnt(appointment)
             
@@ -44,6 +45,11 @@ export default class AppointmentController {
         }
     }
 
+    //TYPE: PARAMS
+    // code: string 
+    
+    // Type: BODY
+    // locationid:number, idtype:number, description:string, date:string, time:string; 
     public updateAppmnt = (req: Request, res: Response): void => {
       try {
           const idAppmnt = req.params.idAppmnt;

@@ -5,8 +5,8 @@ import CreateAppmntRepositoryPort from "../../../domain/port/driven/CreateAppmnt
 export default class CreateAppmntRepository implements CreateAppmntRepositoryPort {
   constructor(private readonly appmntRepository: Repository<AppmntDTO, string>) {}
 
-  createAppmnt(appmnt: AppmntDTO): Promise<boolean> {
-    return this.appmntRepository.save(appmnt);
+  createAppmnt = async (appmnt: AppmntDTO): Promise<boolean> => {
+    return await this.appmntRepository.save(appmnt);
   }
 }
   

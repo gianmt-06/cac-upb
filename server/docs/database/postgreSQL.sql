@@ -1,9 +1,12 @@
 CREATE DATABASE cacupb;
 \c cacupb;
 
+CREATE TYPE docsenum AS ENUM ('CC', 'CE', 'TI', 'RC');
+
 CREATE TABLE IF NOT EXISTS Clients (
     idClient SERIAL PRIMARY KEY,
     idClientType INT NOT NULL,
+    docType docsenum NOT NULL,
     docNumber VARCHAR(50) UNIQUE NOT NULL,
     nameClient VARCHAR(50) NOT NULL,
     lastNameClient VARCHAR(50) NOT NULL,
@@ -21,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Users (
     idUser SERIAL PRIMARY KEY,
     idRol INT NOT NULL,
     idLocation INT NOT NULL,
+    docType docsenum NOT NULL,
     docNumber VARCHAR(50) NOT NULL,
     nameUser VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL,
@@ -62,8 +66,9 @@ CREATE TABLE IF NOT EXISTS Appointments (
     idAppmtType INT NOT NULL,
     codeAppmnt VARCHAR(50) UNIQUE NOT NULL,
     description VARCHAR(250) NOT NULL,
-    status appmntStatusEnum DEFAULT 'active',
-    date TIMESTAMP NOT NULL
+    status appmntStatusEnum NOT NULL DEFAULT 'active',
+    date DATE NOT NULL,
+    time TIME NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS AppointmentTypes (
@@ -84,7 +89,7 @@ CREATE TABLE IF NOT EXISTS Availability (
     time TIME NOT NULL,
     totalAppmnts INT NOT NULL,
     asignedAppmnts INT NOT NULL
-)
+);
 
 -- FOREIGN KEYS 
 ALTER TABLE Clients ADD CONSTRAINT fk_client_clienttype FOREIGN KEY (idClientType) REFERENCES ClientTypes(idClientType);
@@ -102,4 +107,4 @@ ALTER TABLE RolesHasPermissions ADD CONSTRAINT fk_rhp_permission FOREIGN KEY (id
 ALTER TABLE UserAppointment ADD CONSTRAINT fk_userappmnt_user FOREIGN KEY (idUser) REFERENCES Users(idUser);
 ALTER TABLE UserAppointment ADD CONSTRAINT fk_userappmnt_appmnt FOREIGN KEY (idAppmnt) REFERENCES Appointments(idAppmnt);
 
-
+ALTER TABLE Availability ADD CONSTRAINT fk_availab_location FOREIGN KEY (idLocation) REFERENCES Locations(idLocation);

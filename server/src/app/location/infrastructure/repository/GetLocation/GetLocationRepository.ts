@@ -20,7 +20,7 @@ export default class GetLocationRepository implements GetLocationRepositoryPort 
       console.log(location);
       
       return new Location(
-        location.locationid || '',
+        location.id || '',
         location.city,
         location.name,
         location.address

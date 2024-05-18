@@ -9,6 +9,8 @@ export default class ClientController {
         private readonly getClientUseCase: GetClientUseCase
     ){}
 
+    //TYPE: BODY
+    // idtype:string, doctype:string, docnumber:string, name:string, lastname:string, birth:string --> format:MM-DD-YY 
     public createClient = (req: Request, res: Response): void => {
         try {
             const client = req.body as ClientDTO;

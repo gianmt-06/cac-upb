@@ -18,10 +18,10 @@ export default class GetUserRepository implements GetUserRepositoryPort {
   getUserById = async(id: string): Promise<AbstractUser> => {
     try {
       const user = await this.userRepository.getOne(id);
-      const location = await this.getLocationRepository.getLocation(user.locationid)
+      const location = await this.getLocationRepository.getLocation(user.idlocation)
       
       return new User(
-        user.uid,
+        user.id,
         user.rolid,
         user.name,
         user.lastname,

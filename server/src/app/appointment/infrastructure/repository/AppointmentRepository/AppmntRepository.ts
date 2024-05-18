@@ -31,12 +31,13 @@ export default class AppmntRepository implements AppmntRepositoryPort {
             await this.databaseConection.query(
                 this.databaseActions.CREATE_APPOINTMENT,
                 [
-                    appmnt.clientid,
+                    appmnt.clientid, //Obtener en el camino
                     appmnt.locationid,
-                    appmnt.type,
-                    appmnt.code,
+                    appmnt.idtype,
+                    appmnt.code, //Obtener en el camino
                     appmnt.description,
-                    appmnt.date
+                    appmnt.date,
+                    appmnt.time
                 ]
             )
             return true;
@@ -47,16 +48,17 @@ export default class AppmntRepository implements AppmntRepositoryPort {
         }
     };
 
-    update = async(key: string, partial: AppmntDTO): Promise<boolean> => {
+    update = async(key: string, partialAppmnt: AppmntDTO): Promise<boolean> => {
         try {
             await this.databaseConection.query(
                 this.databaseActions.UPDATE_APPOINTMENT,
                 [
-                    key,
-                    partial.locationid,
-                    partial.type,
-                    partial.description,
-                    partial.date
+                    key, //Cambiar por el codigo de la cita
+                    partialAppmnt.locationid,
+                    partialAppmnt.idtype,
+                    partialAppmnt.description,
+                    partialAppmnt.date,
+                    partialAppmnt.time
                 ]
             )
             return true

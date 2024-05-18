@@ -1,7 +1,41 @@
+SELECT enum_range(null::appmntstatusenum);
+----------------------------------------------------------
+CREATE VIEW v_clients AS 
+SELECT 
+    idClient as id,
+    idClientType as idtype,
+    docType as doctype,
+    docNumber as docnumber,
+    nameClient as name,
+    lastNameClient as lastname,
+    birthDate as birth
+FROM clients;
+
+-- client: id, idtype, doctype, docnumber, name, lastname, birth
+
+CREATE VIEW v_client_types AS 
+SELECT 
+    idclientType as id,
+    description as description
+FROM clientTypes;
+
+-- clientType: id, description
+
+CREATE VIEW v_location AS SELECT 
+    idLocation AS id,
+    nameLocation as name,
+    city as city,
+    address as address
+ FROM locations;
+
+-- location: id, name, city, address
+
 CREATE VIEW v_users AS SELECT 
-    idUser AS uid,
+    idUser AS id,
     idRol AS rolid,
     idLocation as idlocation,
+    doctype as doctype,
+    docnumber as docnumber,
     nameUser as name,
     lastName as lastname,
     email as email,
@@ -9,37 +43,27 @@ CREATE VIEW v_users AS SELECT
     status as status
 FROM users;
 
-CREATE VIEW v_location AS SELECT 
-    idLocation AS locationid,
-    nameLocation as name,
-    city,
-    address
- FROM locations;
-
-CREATE VIEW v_clients AS 
-SELECT 
-    c.idClient as id,
-    c.idClientType as idtype,
-    ct.description as descriptiontype
-    c.docNumber as docnumber,
-    c.nameClient as name,
-    c.lastNameClient as lastname,
-    c.birthDate as birth
-FROM clients c 
-JOIN ClientTypes ct ON c.idClientType = ct.idClientType;
+-- user: id, rolid, idlocation, doctype, docnumber, name, lastname, email, password, status
 
 CREATE VIEW v_appmnts AS 
 SELECT 
-    a.idappmnt as id,
-    a.idclient as clientid,
-    a.idlocation as locationid,
-    a.idappmttype as idtype,
-    at.description as descriptiontype,
-    a.codeappmnt as code,
-    a.description as description,
-    a.status as status,
-    a.date as date
-FROM appointments a 
-JOIN appointmentTypes at on a.idappmtType = at.idappmtType;
+    idappmnt as id,
+    idclient as clientid,
+    idlocation as locationid,
+    idappmttype as idtype,
+    codeappmnt as code,
+    description as description,
+    status as status,
+    date as date,
+    time as time
+FROM appointments;
 
-SELECT enum_range(null::appmntstatusenum);
+-- appmnt: id, clientid, locationid, idtype, code, description, status, date, time
+
+CREATE VIEW v_appmnt_types AS 
+SELECT 
+    idappmttype as id,
+    description as description
+FROM appointments;
+
+-- appmntTypes: id, description

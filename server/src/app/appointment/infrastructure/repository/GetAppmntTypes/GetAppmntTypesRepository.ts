@@ -15,7 +15,7 @@ export default class GetAppmntTypesRepository implements GetAppmntTypesRepositor
       const appmntTypes = databaseTypes.map(async (databaseType): Promise<AbstractAppmntType> => {  
         if(!databaseType) return new NullAppmntType()
         return new AppmntType(
-          databaseType.idappmttype,
+          databaseType.id,
           databaseType.description
         )
       }) 

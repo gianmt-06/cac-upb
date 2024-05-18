@@ -6,7 +6,7 @@ import CreateClientUseCase from "../../application/usecase/CreateClient/CreateCl
 import GetClientUseCase from "../../application/usecase/GetClient/GetClientUseCase";
 import ClientController from "../express/controller/ClientController";
 import ClientRouter from "../express/router/ClientRouter";
-import ClientRepository from "../repository/ClientRepository.ts/ClientRepository";
+import ClientRepository from "../repository/ClientRepository/ClientRepository";
 import CreateClientRepository from "../repository/CreateClient/CreateClientRepository";
 import GetClientRepository from "../repository/GetClient/GetClientRepository";
 

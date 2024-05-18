@@ -33,7 +33,9 @@ export default class UserRepository implements UserRepositoryPort {
                 this.databaseActions.CREATE_USER,
                 [
                     user.rolid,
-                    user.locationid,
+                    user.idlocation,
+                    user.doctype,
+                    user.docnumber,
                     user.name,
                     user.lastname,
                     user.email,
@@ -53,7 +55,7 @@ export default class UserRepository implements UserRepositoryPort {
                 [
                     key,
                     partial.rolid,
-                    partial.locationid,
+                    partial.idlocation,
                     partial.name,
                     partial.lastname,
                     partial.email,
@@ -65,8 +67,6 @@ export default class UserRepository implements UserRepositoryPort {
             throw new Error('Error al actualizar los datos de usuario')
         }
     };
-
-    //TODO: implement procedure in database
 
     getUserByEmail = async(email: string): Promise<UserDTO> => {
         try {
@@ -82,7 +82,7 @@ export default class UserRepository implements UserRepositoryPort {
     getCredentials = async(email: string):  Promise<{uid: string, hashPassword: string}> => {
         try {
             const user = await this.getUserByEmail(email);
-            return {uid: user.uid, hashPassword: user.password || ''}
+            return {uid: user.id, hashPassword: user.password || ''}
         } catch (error) {
             throw new Error('Error al obtener credenciales')
         }

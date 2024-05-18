@@ -1,11 +1,12 @@
 export default interface UserDTO {
-    uid: string,
+    id: string,
     rolid: string, 
-    docnumber: string,
-    locationid: string,
+    idlocation: string,
+    doctype: string,
+    docnumber: string, 
     name: string,
     lastname: string,
     email: string,
-    password?: string
-    status?: string
+    password: string
+    status: string
 }

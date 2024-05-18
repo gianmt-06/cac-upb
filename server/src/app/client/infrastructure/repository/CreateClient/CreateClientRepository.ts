@@ -6,9 +6,9 @@ import CreateClientRepositoryPort from '../../../domain/port/driven/CreateClient
 export default class CreateClientRepository implements CreateClientRepositoryPort {
   constructor(private readonly clientRepository: ClientRepositoryPort) {}
 
-  createClient(client: ClientDTO): Promise<boolean> {
+  createClient = async(client: ClientDTO): Promise<boolean> => {
     try {
-      return this.clientRepository.save(client)
+      return await this.clientRepository.save(client)
     } catch (error) {
       return Promise.resolve(false);
     }
