@@ -24,7 +24,7 @@ body {
 
 #app {
     background-color: var(--ligth-color-background);
-    /* height: calc(100vh - var(--nav-height)); */
+    height: calc(100vh - var(--nav-height));
 }
 
 /* Assets */
@@ -32,6 +32,7 @@ body {
     padding: 0px var(--page-inline-padding);
     margin-top: var(--nav-height);  
     width: 100%;
+    height: 100%;
 }
 
 .input-container label, .input-container small {
@@ -333,4 +334,122 @@ body {
 
 .modal-btn {
     visibility: hidden;
+}
+
+/* Tickets View */
+.screen-tickets {
+    display: flex;
+}
+
+.carrousel {
+    flex: 0.6;
+}
+
+.turns-container {
+    flex: 1;
+    display: flex;
+    width: 100%;
+}
+
+.tickets-container, .positions-container {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.ticket-subtitle {
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+}
+
+.ticket-code {
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+}
+
+.simple-ticket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 15px;
+    border: 1px solid var(--ligth-color-text);
+    border-radius: 10px;
+}
+
+.position-code {
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;  
+    color: white;
+}
+
+.simple-position {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 15px;
+  
+    background-color: var(--ligth-color-text);
+    border-radius: 10px;
+}
+
+/* Users View */
+.user-view {
+    display: flex;
+    gap: 20px;
+}
+
+.user-view-title {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: left;
+    color: var(--ligth-color-text)
+}
+
+.tickets-pending {
+    flex: 0.3;
+}
+
+.appmnt-data {
+    flex: 1;
+}
+
+.user-view-title ul{
+    
+}
+
+/* Ticket Validation Page */
+.validate-ticket-page {
+    display: flex;
+    width: 100%;
+} 
+
+.tutorial-ticket, .form-ticket-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-ticket-container {
+    flex-direction: column;
+}
+
+.form-ticket-title {
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.form-title-paragraph {
+    margin-top: 30px;
+    font-size: 15px;
+    text-align: center;
 }

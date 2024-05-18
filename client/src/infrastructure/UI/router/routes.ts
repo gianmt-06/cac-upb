@@ -1,4 +1,6 @@
+import AppmntUseCasesFactory from "../../../app/appointment/infrastructure/factory/AppmntUseCasesFactory";
 import GetClientUseCaseFactory from "../../../app/client/infrastructure/factory/GetClientUseCaseFactory/GetClientUseCaseFactory";
+import GetLocationsUseCaseFactory from "../../../app/location/infrastructure/factory/GetLocationsUseCaseFactory";
 import HomeController from "../pages/home/controller/HomeController";
 import HomeView from "../pages/home/view/HomeView";
 
@@ -7,6 +9,8 @@ import RescheduleView from "../pages/rescheduleAppointment/view/RescheduleView";
 
 import ScheduleController from "../pages/scheduleAppointment/controller/ScheduleController";
 import ScheduleView from "../pages/scheduleAppointment/view/ScheduleView";
+import TicketsGeneratorController from "../pages/ticketsPage/controller/TicketGeneratorController";
+import TicketsGeneratorView from "../pages/ticketsPage/view/TicketGeneratorView";
 
 import NotFoundController from "../shared/pages/notFound/controller/NotFoundController";
 import NotFoundView from "../shared/pages/notFound/view/NotFoundView";
@@ -24,7 +28,14 @@ export const routes: RouteInterfaceN[] = [
     {
         name: 'citas',
         path: 'citas',
-        routeController: new ScheduleController(new ScheduleView(layout), GetClientUseCaseFactory.createUseCase()),
+        routeController: new ScheduleController(
+            new ScheduleView(layout), 
+            GetClientUseCaseFactory.createUseCase(),
+            GetLocationsUseCaseFactory.createUseCase(),
+            AppmntUseCasesFactory.GetAppmntTypesUseCase(),
+            AppmntUseCasesFactory.CreateAppmntUseCase()
+        ),
+        
         childrens: [
             {
                 name: 'reagendar',
@@ -36,12 +47,17 @@ export const routes: RouteInterfaceN[] = [
                 //         routeController: new AppointmentController(new AppointmentView(), new AppointmentModel()),
                 //     }
                 // ]
-            }
+            },
         //     {
         //         name: 'cancelar',
         //         path: 'cancel',
         //         routeController: new CancelAppmtController(new CancelAppmtView(), new CancelAppmtModel())
-        //     }
+        //     },
+            {
+                name: 'tickets',
+                path: 'tickets',
+                routeController: new TicketsGeneratorController(new TicketsGeneratorView(layout)),
+            }
         ]
     },
     {

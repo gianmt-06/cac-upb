@@ -27,7 +27,7 @@ export default class Repository<T> implements RepositoryPort<T>{
             const response = await fetch(url, {
                 method: 'POST',
                 headers: this.headers,
-                body: body as BodyInit
+                body: JSON.stringify(body)
             });
 
             return await response.json();

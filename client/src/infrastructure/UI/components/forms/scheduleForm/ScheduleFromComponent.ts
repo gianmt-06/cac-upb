@@ -20,4 +20,16 @@ export default class ScheduleFormComponent implements Component {
     clientFields = (action: Function) => {
         this.scheduleFormController.clientFields(action);
     }
+
+    getLocations = (action: Function) => {
+        this.scheduleFormController.getLocations(action);
+    }
+
+    public getAppmntTypes = (bind: Function) => {
+        this.scheduleFormController.getAppmntTypes(bind);
+    }
+
+    public createAppmnt = (bind: Function) => {
+        this.scheduleFormController.createAppmnt(bind)
+    }
 }

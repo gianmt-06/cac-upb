@@ -42,4 +42,16 @@ export default class ScheduleView extends View {
     public getClientData = (action: Function) => {
         this.scheduleForm.clientFields(action);
     }
+
+    public getLocations = (bind: Function) => {
+        this.scheduleForm.getLocations(bind);
+    }
+
+    public getAppmntTypes = (bind: Function) => {
+        this.scheduleForm.getAppmntTypes(bind);
+    }
+
+    public createAppmnt = (bind: Function) => {
+        this.scheduleForm.createAppmnt(bind)
+    }
 }

@@ -2,7 +2,7 @@ export const getScheduleForm = () => {
     return `
         <div class="ag-cita-page page-content">
         <h1 class="ag-cita-title">Agenda tu cita</h1>
-        <form class="ag-cita-form needs-validation" novalidate>
+        <form class="ag-cita-form needs-validation" id="appmntForm" novalidate>
             <div class="row">
                 <div class="input-container col-md-5">
                     <label for="documentType" class="input-label">Tipo documento</label>
@@ -44,7 +44,6 @@ export const getScheduleForm = () => {
                     <label for="cityName" class="input-label">Ciudad</label>
                     <select class="form-select" id="cityName" required>
                         <option selected disabled value="">Choose...</option>
-                        <option>...</option>
                     </select>
                     <div class="invalid-feedback">Campo requerido</div>
                 </div>
@@ -107,8 +106,9 @@ export const getScheduleForm = () => {
                                 <path d="M16.25 8.75C16.25 14.7017 10 18.125 10 18.125C10 18.125 3.75 14.7017 3.75 8.75C3.75 7.0924 4.40848 5.50268 5.58058 4.33058C6.75268 3.15848 8.3424 2.5 10 2.5C11.6576 2.5 13.2473 3.15848 14.4194 4.33058C15.5915 5.50268 16.25 7.0924 16.25 8.75Z" stroke="#A5ADB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>                                  
                         </span>
-                        <input type="text" class="form-control" id="asignedPlace"
-                            aria-describedby="inputGroupPrepend" required>
+                        <select class="form-select" id="asignedPlace" required>
+                            <option selected disabled value="">Choose...</option>
+                        </select>
                         <div class="invalid-feedback">
                             Please choose a username.
                         </div>
