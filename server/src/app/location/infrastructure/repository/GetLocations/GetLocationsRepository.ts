@@ -8,7 +8,6 @@ export default class GetLocationsRepository implements GetLocationsRepositoryPor
   constructor(private readonly getLocationsRepository: LocationRepositoryPort) {}
 
   getLocations = async (): Promise<Location[]> => {
-    
     try {
       const databaseLocations = await this.getLocationsRepository.getAll();
 
@@ -16,7 +15,7 @@ export default class GetLocationsRepository implements GetLocationsRepositoryPor
           
         if(!databaseLocation) return new NullLocation()
           return new Location(
-            databaseLocation.id || "",
+            databaseLocation.id,
             databaseLocation.city,
             databaseLocation.name,
             databaseLocation.address
@@ -25,8 +24,6 @@ export default class GetLocationsRepository implements GetLocationsRepositoryPor
 
       return Promise.all(locations);
     } catch (_error) {
-      console.log(_error);
-      
       return Promise.resolve([new NullLocation()]);
     }
   }

@@ -16,17 +16,13 @@ export default class GetLocationRepository implements GetLocationRepositoryPort 
   public getLocation = async (id: string): Promise<Location> => {
     try {
       const location = await this.locationRepository.getOne(id);
-      
-      console.log(location);
-      
       return new Location(
-        location.id || '',
+        location.id,
         location.city,
         location.name,
         location.address
       )
     } catch (error) {
-      console.log(error);
       return new NullLocation()
     }
   }

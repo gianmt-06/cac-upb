@@ -25,7 +25,7 @@ export default class GetClientRepository implements GetClientRepositoryPort {
 
   getClientByDocument = async(document: string): Promise<AbstractClient> => {
     try {
-      const databaseClient = await this.clientRepository.getOne(document);
+      const databaseClient = await this.clientRepository.getByDocument(document);
       
       if (databaseClient) return this.clientProvider.getClient(databaseClient)
       return new NullClient();

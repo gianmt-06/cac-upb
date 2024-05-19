@@ -11,7 +11,7 @@ export default class CreateUserService implements CreateUserServicePort {
   }
 
   public createUser = async (user: UserDTO): Promise<boolean> => {
-    return this.createUserRepository.createUser(user)
+    return await this.createUserRepository.createUser(user);
   }
 }
   

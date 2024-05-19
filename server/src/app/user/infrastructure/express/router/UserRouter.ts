@@ -17,9 +17,9 @@ export default class UserRouter implements ExpressRouter {
     }
 
     setRoutes = () => {
+        this.router.get('/id/:idUser', this.userController.getUserById.bind(this.userController))
         this.router.post('/create', this.userController.createUser.bind(this.userController))
         this.router.post('/login', this.userController.logIn.bind(this.userController))
-        this.router.get('/:idUser', this.userController.getUserById.bind(this.userController))
     };
 
 }

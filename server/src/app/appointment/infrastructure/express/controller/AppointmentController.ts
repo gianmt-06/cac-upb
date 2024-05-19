@@ -5,15 +5,18 @@ import ModifyAppmntUseCasePort from "../../../domain/port/driver/ModifyAppmnt/Mo
 import DeleteAppmntUseCasePort from "../../../domain/port/driver/DeleteAppmnt/DeleteAppmntUseCasePort";
 import GetAppmntTypesUseCasePort from "../../../domain/port/driver/GetAppmntTypes/GetAppmntTypesUseCasePort";
 import GetAppmntUseCasePort from "../../../domain/port/driver/GetAppmnt/GetAppmntUseCasePort";
+import Controller from "../../../../../express/controller/Controller";
 
-export default class AppointmentController {
+export default class AppointmentController extends Controller {
     constructor(
         private readonly getAppointmentUseCase: GetAppmntUseCasePort,
         private readonly createAppointmentUseCase: CreateAppmntUseCasePort,
         private readonly modifyAppointmentUseCase: ModifyAppmntUseCasePort,
         private readonly deleteAppointmentUseCase: DeleteAppmntUseCasePort,
         private readonly getAppmntTypesUseCase: GetAppmntTypesUseCasePort
-    ){}
+    ){
+      super();
+    }
 
     // Type: BODY
     // code: string, docClient:string, date:string; 
@@ -37,11 +40,19 @@ export default class AppointmentController {
     public createAppmnt = (req: Request, res: Response): void => {
         try {
             const appointment = req.body as AppmntDTO;
-            this.createAppointmentUseCase.createAppmnt(appointment)
             
-            res.status(200).json({created: true})
+            this.createAppointmentUseCase.createAppmnt(appointment).then(value => {
+              if(value) {
+                res.status(200).json(this.responseHandler.response("Cita agendada con exito"))
+                return;
+              }
+              res.status(400).json(this.responseHandler.response("Error al agendar la cita"))
+            }).catch(_error => {
+              res.status(500).json(this.responseHandler.serverError());
+            });
+
         } catch (error) {
-            res.status(500).json({error: true})
+          res.status(500).json(this.responseHandler.serverError());
         }
     }
 

@@ -2,11 +2,14 @@ import { Request, Response } from "express"
 import CreateClientUseCasePort from "../../../domain/port/driver/CreateClient/CreateClientUseCasePort";
 import ClientDTO from "../../../domain/model/ClientDTO/ClientDTO";
 import GetClientUseCase from "../../../application/usecase/GetClient/GetClientUseCase";
-export default class ClientController {
+import Controller from "../../../../../express/controller/Controller";
+export default class ClientController extends Controller{
     constructor(
         private readonly createClientUseCase: CreateClientUseCasePort,
         private readonly getClientUseCase: GetClientUseCase
-    ){}
+    ){
+        super()
+    }
 
     //TYPE: BODY
     // idtype:string, doctype:string, docnumber:string, name:string, lastname:string, birth:string --> format:MM-DD-YY 
@@ -16,15 +19,15 @@ export default class ClientController {
             
             this.createClientUseCase.createClient(client).then(value => {
                 value ?
-                res.status(201).json({created: value}):
-                res.status(400).json({created: value});
+                res.status(201).json(this.responseHandler.response("Cliente creado con exito")):
+                res.status(400).json(this.responseHandler.throwError("Error al crear cliente"));
 
             }).catch(_error => {
-                res.status(500).json({error: true, message: "Error de servidor"})
+                res.status(500).json(this.responseHandler.serverError())
             });
 
         } catch (error) {
-            res.status(500).json({error: true, message: "Error de servidor"})
+            res.status(500).json(this.responseHandler.serverError())
         }
     }
 
@@ -37,17 +40,17 @@ export default class ClientController {
 
             databaseClient.then(client => {
                 if(client.isNull()) {
-                    res.status(404).json({error: true, message: "Client not found"});
+                    res.status(404).json(this.responseHandler.throwError("Client not found"));
                     return;
                 }             
-                res.status(200).json(client);
+                res.status(200).json(this.responseHandler.response("Cliente obtenido con exito", client));
 
             }).catch(_error => {
-                res.status(500).json({error: true, message: "Error de servidor"})
+                res.status(500).json(this.responseHandler.serverError())
             });
             
         } catch (error) {
-            res.status(500).json({error: error, message: "Error de servidor"})
+            res.status(500).json(this.responseHandler.serverError());
         }
     }
 
@@ -56,21 +59,23 @@ export default class ClientController {
     public getClientByDoc = (req: Request, res: Response): void => {
         try {
             const document = req.params.document;
+            console.log(document);
+            
             const databaseClient = this.getClientUseCase.getClientByDocument(document);
 
             databaseClient.then(client => {
                 if(client.isNull()) {
-                    res.status(404).json({error: true, message: "Client not found"});
+                    res.status(404).json(this.responseHandler.throwError("Client not found"));
                     return;
                 }             
-                res.status(200).json(client);
+                res.status(200).json(this.responseHandler.response("Cliente obtenido con exito", client));
 
             }).catch(_error => {
-                res.status(500).json({error: true, message: "Error de servidor"})
+                res.status(500).json(this.responseHandler.serverError());
             });
             
         } catch (error) {
-            res.status(500).json({error: error, message: "Error de servidor"})
+            res.status(500).json(this.responseHandler.serverError());
         }
     }
 }

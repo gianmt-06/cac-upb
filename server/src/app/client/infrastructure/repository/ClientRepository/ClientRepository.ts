@@ -1,5 +1,4 @@
 import DBActionsConfig from "../../../../../postgresql/config/DatabaseActions";
-import AbstractClient from "../../../domain/model/Client/AbstractClient";
 import ClientDTO from "../../../domain/model/ClientDTO/ClientDTO";
 import { ClientRepositoryPort } from "../../../domain/port/driven/ClientRepository/UserRepositoryPort";
 import ClientDatabaseConection from "../../postgresql/ClientDatabaseConection";
@@ -48,6 +47,8 @@ export default class ClientRepository implements ClientRepositoryPort {
 
     getByDocument = async(document: string): Promise<ClientDTO> => {
         try {
+            console.log('document' + document);
+            
             const { rows } = await this.databaseConection.query(
                 this.databaseActions.GET_CLIENT_BY_DOC,
                 [document]

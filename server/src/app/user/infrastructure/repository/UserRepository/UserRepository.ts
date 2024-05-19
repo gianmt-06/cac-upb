@@ -15,21 +15,19 @@ export default class UserRepository implements UserRepositoryPort {
     }
 
     getOne = async (key: string): Promise<UserDTO> => {
-        try {
+        try {            
             const { rows } = await this.databaseConection.query(
                 this.databaseActions.GET_USER, [key]
             )
             return rows[0] as UserDTO;
         } catch (error) {
-            throw Error
+            throw new Error("Error al obtener usuario de la base de datos")
         }
     }
 
-    save = (user: UserDTO): Promise<boolean> => {
+    save = async(user: UserDTO): Promise<boolean> => {
         try {
-            console.log(user);
-            
-            this.databaseConection.query(
+            await this.databaseConection.query(
                 this.databaseActions.CREATE_USER,
                 [
                     user.rolid,
@@ -42,9 +40,10 @@ export default class UserRepository implements UserRepositoryPort {
                     user.password
                 ]
             )
-            return Promise.resolve(true);
-        } catch (_error) {
-            return Promise.resolve(false)
+
+            return true;
+        } catch (_error) {        
+            return false
         }
     }
 

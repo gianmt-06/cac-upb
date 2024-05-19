@@ -5,7 +5,11 @@ import { LocationRepositoryPort } from "../../../domain/port/driven/LocationRepo
 
 export default class LocationRepository implements LocationRepositoryPort {
     private readonly databaseActions: DBActionsConfig;
-
+    
+    save!: (element: LocationDTO) => Promise<boolean>;
+    update!: (key: string, partial: LocationDTO) => Promise<boolean>;
+    delete!: (key: string) => Promise<boolean>;
+    
     constructor(private readonly databaseConectionPort: LocationDatabaseConection ){
         this.databaseActions = new DBActionsConfig();
     }
@@ -28,7 +32,4 @@ export default class LocationRepository implements LocationRepositoryPort {
         }
     }
 
-    save!: (element: LocationDTO) => Promise<boolean>;
-    update!: (key: string, partial: LocationDTO) => Promise<boolean>;
-    delete!: (key: string) => Promise<boolean>;
 }
