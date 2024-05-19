@@ -6,8 +6,12 @@ import GetClientUseCasePort from '../../../domain/port/driver/GetClient/GetClien
 export default class GetClientUseCase implements GetClientUseCasePort {
   constructor(private readonly getClientService: GetClientServicePort) {}
   
-  getClient = async (id: string): Promise<AbstractClient> => {
-    return await this.getClientService.getClient(id);
+  getClientById = async (id: string): Promise<AbstractClient> => {
+    return await this.getClientService.getClientById(id);
+  }
+
+  getClientByDocument = async(document: string): Promise<AbstractClient> => {
+    return await this.getClientService.getClientByDocument(document);
   }
 }
   

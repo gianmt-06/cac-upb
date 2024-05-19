@@ -1,32 +1,33 @@
 
 import AbstractClient from '../../../domain/model/Client/AbstractClient'
-import Client from '../../../domain/model/Client/Client';
 import NullClient from '../../../domain/model/Client/NullClient';
 import { ClientRepositoryPort } from '../../../domain/port/driven/ClientRepository/UserRepositoryPort'
 import GetClientRepositoryPort from '../../../domain/port/driven/GetClient/GetClientRepositoryPort'
+import ClientProvider from './provider/ClientProvider';
 
 export default class GetClientRepository implements GetClientRepositoryPort {
+  private clientProvider: ClientProvider;
 
-  constructor(private readonly clientRepository: ClientRepositoryPort) {}
+  constructor(private readonly clientRepository: ClientRepositoryPort) {
+    this.clientProvider = new ClientProvider();
+  }
   
-  getClient = async (id: string): Promise<AbstractClient> => {
+  getClientById = async (id: string): Promise<AbstractClient> => {
     try {
       const databaseClient = await this.clientRepository.getOne(id);
 
-      if(databaseClient) {
-        return new Client(
-          databaseClient.name,
-          databaseClient.lastname,
-          databaseClient.docnumber,
-          {
-            id: databaseClient.idtype,
-            description: databaseClient.idtype
-          },
-          new Date(databaseClient.birth),
-          databaseClient.id
-        )
-      }
+      if (databaseClient) return this.clientProvider.getClient(databaseClient)
+      return new NullClient();
+    } catch (error) {
+      return new NullClient();
+    }
+  }
 
+  getClientByDocument = async(document: string): Promise<AbstractClient> => {
+    try {
+      const databaseClient = await this.clientRepository.getOne(document);
+      
+      if (databaseClient) return this.clientProvider.getClient(databaseClient)
       return new NullClient();
     } catch (error) {
       return new NullClient();

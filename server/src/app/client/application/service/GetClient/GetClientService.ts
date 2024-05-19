@@ -6,8 +6,12 @@ import GetClientServicePort from '../../../domain/port/driver/GetClient/GetClien
 export default class GetClientService implements GetClientServicePort {
   constructor(private readonly getClientRepository: GetClientRepositoryPort) {}
 
-  getClient = async(id: string): Promise<AbstractClient> => {
-    return await this.getClientRepository.getClient(id);
+  getClientById = async(id: string): Promise<AbstractClient> => {
+    return await this.getClientRepository.getClientById(id);
+  }
+
+  getClientByDocument = async(document: string): Promise<AbstractClient> => {
+    return await this.getClientRepository.getClientByDocument(document);
   }
 }
   

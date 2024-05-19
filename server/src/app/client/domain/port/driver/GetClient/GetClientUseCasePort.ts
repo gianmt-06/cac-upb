@@ -1,6 +1,8 @@
 import AbstractClient from "../../../model/Client/AbstractClient";
 
 export default interface GetClientUseCasePort {
-  getClient(id: string): Promise<AbstractClient>
+  getClientById(id: string): Promise<AbstractClient>
+  getClientByDocument(document: string): Promise<AbstractClient>;
+
 }
   

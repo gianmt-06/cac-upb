@@ -16,6 +16,6 @@ export default class NullClient extends AbstractClient {
     }
 
     public isNull(): boolean {
-        return false    
+        return true    
     }
 }

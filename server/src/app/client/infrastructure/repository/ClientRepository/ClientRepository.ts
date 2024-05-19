@@ -1,4 +1,5 @@
 import DBActionsConfig from "../../../../../postgresql/config/DatabaseActions";
+import AbstractClient from "../../../domain/model/Client/AbstractClient";
 import ClientDTO from "../../../domain/model/ClientDTO/ClientDTO";
 import { ClientRepositoryPort } from "../../../domain/port/driven/ClientRepository/UserRepositoryPort";
 import ClientDatabaseConection from "../../postgresql/ClientDatabaseConection";
@@ -6,6 +7,7 @@ import ClientDatabaseConection from "../../postgresql/ClientDatabaseConection";
 export default class ClientRepository implements ClientRepositoryPort {
     private readonly databaseActions: DBActionsConfig;
     
+    update!: (key: string, partial: ClientDTO) => Promise<boolean>;
     getAll!: () => Promise<ClientDTO[]>;
     delete!: (key: string) => Promise<boolean>;
 
@@ -43,6 +45,17 @@ export default class ClientRepository implements ClientRepositoryPort {
             throw Error
         }
     }
+
+    getByDocument = async(document: string): Promise<ClientDTO> => {
+        try {
+            const { rows } = await this.databaseConection.query(
+                this.databaseActions.GET_CLIENT_BY_DOC,
+                [document]
+            )
+            return rows[0] as ClientDTO;
+        } catch (error) {
+            throw Error
+        }
+    }
     
-    update!: (key: string, partial: ClientDTO) => Promise<boolean>;
 }

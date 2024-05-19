@@ -2,7 +2,6 @@ import { Router } from "express";
 import ExpressRouter from "../../../../../express/route/ExpressRouter";
 import ClientController from "../controller/ClientController";
 
-import { clientBodyValidation } from "../validator/ClientBodyValidation";
 
 export default class ClientRouter implements ExpressRouter {
     router: Router;
@@ -19,7 +18,8 @@ export default class ClientRouter implements ExpressRouter {
     }
 
     setRoutes = () => {
-        this.router.post('/create', clientBodyValidation, this.clientController.createClient.bind(this.clientController));
+        this.router.post('/create', this.clientController.createClient.bind(this.clientController));
         this.router.get('/:idClient', this.clientController.getUserById.bind(this.clientController))
+        this.router.get('/document/:document', this.clientController.getClientByDoc.bind(this.clientController))
     };
 }
