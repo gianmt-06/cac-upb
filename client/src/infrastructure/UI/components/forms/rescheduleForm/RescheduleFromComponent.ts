@@ -20,4 +20,8 @@ export default class RescheduleFormComponent implements Component {
     public setValidateAction(action: Function, loadHandler: Function){
         this.RescheduleFormController.setValidateAction(action, loadHandler)
       }
+
+    public setCancelAction(action: Function, loadHandler: Function){
+    this.RescheduleFormController.setCancelAction(action, loadHandler)
+    }
 }

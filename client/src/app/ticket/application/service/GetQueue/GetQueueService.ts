@@ -1,5 +1,5 @@
 
-import TicketDTO from '../../../domain/model/TicketDTO/TicketDTO';
+import {TicketDTO} from '../../../domain/model/TicketDTO/TicketDTO';
 import GetQueueRepositoryPort from '../../../domain/port/driven/GetQueue/GetQueueRepositoryPort';
 import GetQueueServicePort from '../../../domain/port/driver/GetQueue/GetQueueServicePort'
 

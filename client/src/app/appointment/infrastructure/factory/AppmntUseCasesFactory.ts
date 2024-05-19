@@ -1,18 +1,22 @@
 import Repository from "../../../../shared/infrastructure/repository/Repository";
 import Response from "../../../shared/domain/model/APIResponse/Response";
 import CreateAppmntService from "../../application/service/CreateAppmnt/CreateAppmntService";
+import DeleteAppmntService from "../../application/service/DeleteAppmnt/DeleteAppmntService";
 import GetAppmntTypesService from "../../application/service/GetAppmntTypes/GetAppmntTypesService";
 import ValidateAppmntService from "../../application/service/ValidateAppmnt/ValidatAppmntService";
 import CreateAppmntUseCase from "../../application/usecase/CreateAppmnt/CreateAppmntUseCase";
+import DeleteAppmntUseCase from "../../application/usecase/DeleteAppmnt/DeleteAppmntUseCase";
 import GetAppmntTypesUseCase from "../../application/usecase/GetAppmntTypes/GetAppmntTypesUseCase";
 import ValidateAppmntUseCase from "../../application/usecase/ValidateAppmnt/ValidatAppmntUseCase";
 import AppmntDTO from "../../domain/model/AppointmentDTO/AppmntDTO";
 import AppmntTypeDTO from "../../domain/model/AppointmentDTO/AppmntTypeDTO";
 import Appointment from "../../domain/model/appointment/Appointment";
 import CreateAppmntUseCasePort from "../../domain/port/driver/CreateAppmnt/CreateAppmntUseCasePort";
+import DeleteAppmntUseCasePort from "../../domain/port/driver/DeleteAppmnt/DeleteAppmntUseCasePort";
 import GetAppmntTypesUseCasePort from "../../domain/port/driver/GetAppmntTypes/GetAppmntTypesUseCasePort";
 import ValidateAppmntUseCasePort from "../../domain/port/driver/ValidateAppmnt/ValidatAppmntUseCasePort";
 import CreateAppmntRepository from "../repository/CreateAppmntRepository/CreateAppmntRepository";
+import DeleteAppmntRepository from "../repository/DeleteAppmntRepository/DeleteAppmntRepository";
 import GetAppmntTypesRepository from "../repository/GetAppointmentTypes/GetAppmntTypesRepository";
 import ValidateAppmntRepository from "../repository/ValidateAppmntRepository/ValidatAppmntRepository";
 
@@ -42,5 +46,13 @@ export default class AppmntUseCasesFactory {
         const validateAppmntUseCase = new ValidateAppmntUseCase(validateAppmntService);
         
         return validateAppmntUseCase;
+    }
+
+    public static DeleteAppmntUseCase = (): DeleteAppmntUseCasePort => {
+        const deleteAppmntRepo = new DeleteAppmntRepository(new Repository<Response<AppmntDTO>>);
+        const deleteAppmntService = new DeleteAppmntService(deleteAppmntRepo);
+        const deleteAppmntUseCase = new DeleteAppmntUseCase(deleteAppmntService);
+        
+        return deleteAppmntUseCase;
     }
 }

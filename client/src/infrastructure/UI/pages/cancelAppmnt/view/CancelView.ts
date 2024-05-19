@@ -31,7 +31,7 @@ export default class CancelView extends View {
     }
 
     public setValidateAction = (action: Function, loadHandler: Function) => {
-        this.reScheduleForm.setValidateAction(action, loadHandler);
+        this.reScheduleForm.setCancelAction(action, loadHandler);
     }
 
     public loadScheduleForm = () => {

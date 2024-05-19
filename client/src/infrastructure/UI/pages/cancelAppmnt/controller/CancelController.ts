@@ -1,3 +1,4 @@
+import DeleteAppmntUseCasePort from "../../../../../app/appointment/domain/port/driver/DeleteAppmnt/DeleteAppmntUseCasePort.js"
 import ValidateAppmntUseCasePort from "../../../../../app/appointment/domain/port/driver/ValidateAppmnt/ValidatAppmntUseCasePort.js"
 import ControllerInterface from "../../../types/ControllerInterface.js"
 import RescheduleView from "../view/CancelView.js"
@@ -5,7 +6,8 @@ import RescheduleView from "../view/CancelView.js"
 export default class CancelController implements ControllerInterface {
   constructor(
     private readonly homeView: RescheduleView,
-    private readonly validateAppmntUseCase: ValidateAppmntUseCasePort
+    private readonly validateAppmntUseCase: ValidateAppmntUseCasePort,
+    private readonly deleteAppmntUseCase: DeleteAppmntUseCasePort
   ) {}
 
   public init = (): void => {
@@ -14,6 +16,6 @@ export default class CancelController implements ControllerInterface {
   }
 
   public setValidateAction(action: Function){
-    this.homeView.setValidateAction(action, this.homeView.loadScheduleForm)
+    this.homeView.setValidateAction(action, this.deleteAppmntUseCase.deleteAppmnt)
   }
 }

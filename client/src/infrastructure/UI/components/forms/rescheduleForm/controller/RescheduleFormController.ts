@@ -14,4 +14,8 @@ export default class RescheduleFormController {
     public setValidateAction(action: Function, loadHandler: Function){
         this.rescheduleFormView.setValidateAction(action, loadHandler)
       }
+
+    public setCancelAction(action: Function, loadHandler: Function){
+        this.rescheduleFormView.cancelAppmnt(action, loadHandler)
+    }
 }

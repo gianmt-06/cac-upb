@@ -47,7 +47,6 @@ export default class Router {
     }
 
     private startController(controller: ControllerInterface) {
-        
         this.routeController = controller;
         this.routeController.init()
     }

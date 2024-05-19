@@ -1,5 +1,5 @@
 import Repository from "../../../../../shared/infrastructure/repository/Repository";
-import TicketDTO from "../../../domain/model/TicketDTO/TicketDTO";
+import {TicketDTO} from "../../../domain/model/TicketDTO/TicketDTO";
 import CreateTicketRepositoryPort from "../../../domain/port/driven/CreateTicket/CreateTicketRepositoryPort";
 
 export default class CreateTicketRepository implements CreateTicketRepositoryPort {

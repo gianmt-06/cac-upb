@@ -12,7 +12,7 @@ export default class HomeView extends View {
     }
 
     public render = async(): Promise<void> => {
-        await this.load()
+        this.load()
         this.components.push(new NavbarComponent(document.querySelector('#navbar') as HTMLDivElement))
         this.components.forEach((component: Component) => component.deploy())
     }

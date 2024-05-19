@@ -1,5 +1,5 @@
 
-import TicketDTO from '../../../domain/model/TicketDTO/TicketDTO';
+import {TicketDTO} from '../../../domain/model/TicketDTO/TicketDTO';
 import CreateTicketServicePort from '../../../domain/port/driver/CreateTicket/CreateTicketServicePort';
 import CreateTicketUseCasePort from '../../../domain/port/driver/CreateTicket/CreateTicketUseCasePort'
 

@@ -1,16 +1,25 @@
 import AppmntUseCasesFactory from "../../../app/appointment/infrastructure/factory/AppmntUseCasesFactory";
 import GetClientUseCaseFactory from "../../../app/client/infrastructure/factory/GetClientUseCaseFactory/GetClientUseCaseFactory";
 import GetLocationsUseCaseFactory from "../../../app/location/infrastructure/factory/GetLocationsUseCaseFactory";
+import TicketsUseCasesFactory from "../../../app/ticket/infrastructure/factory/TicketsUseCasesFactory";
+import AdminController from "../pages/adminPage/controller/AdminController";
+import AdminView from "../pages/adminPage/view/AdminView";
 import CancelController from "../pages/cancelAppmnt/controller/CancelController";
 import CancelView from "../pages/cancelAppmnt/view/CancelView";
 import HomeController from "../pages/home/controller/HomeController";
 import HomeView from "../pages/home/view/HomeView";
+import LoginController from "../pages/loginPage/controller/LoginController";
+import LoginView from "../pages/loginPage/view/LoginView";
 
 import RescheduleController from "../pages/rescheduleAppointment/controller/RescheduleController";
 import RescheduleView from "../pages/rescheduleAppointment/view/RescheduleView";
 
 import ScheduleController from "../pages/scheduleAppointment/controller/ScheduleController";
 import ScheduleView from "../pages/scheduleAppointment/view/ScheduleView";
+import TicketsGeneratorController from "../pages/ticketsPage/controller/TicketGeneratorController";
+import TicketsGeneratorView from "../pages/ticketsPage/view/TicketGeneratorView";
+import UserController from "../pages/userPage/controller/UserController";
+import UserView from "../pages/userPage/view/UserView";
 // import TicketsGeneratorController from "../pages/ticketsPage/controller/TicketGeneratorController";
 // import TicketsGeneratorView from "../pages/ticketsPage/view/TicketGeneratorView";
 
@@ -58,14 +67,37 @@ export const routes: RouteInterfaceN[] = [
                 path: 'cancel',
                 routeController: new CancelController(
                     new CancelView(layout), 
-                    AppmntUseCasesFactory.ValidateAppmntUseCase())
+                    AppmntUseCasesFactory.ValidateAppmntUseCase(),
+                    AppmntUseCasesFactory.DeleteAppmntUseCase()
+                    )
             },
-            // {
-            //     name: 'tickets',
-            //     path: 'tickets',
-            //     routeController: new TicketsGeneratorController(new TicketsGeneratorView(layout)),
-            // }
         ]
+    },
+    {
+        name: 'tickets',
+        path: 'tickets',
+        routeController: new TicketsGeneratorController(
+            new TicketsGeneratorView(layout),
+            TicketsUseCasesFactory.CreateTicketUseCase()
+            ),
+    },
+    {
+        name: 'admin',
+        path: 'admin',
+        routeController: new AdminController(new AdminView(layout)),
+    },
+    {
+        name: 'user',
+        path: 'user',
+        routeController: new UserController(
+            new UserView(layout),
+            TicketsUseCasesFactory.GetTicketUseCase()
+            ),
+    },
+    {
+        name: 'login',
+        path: 'login',
+        routeController: new LoginController(new LoginView(layout)),
     },
     {
         name: 'notFound',

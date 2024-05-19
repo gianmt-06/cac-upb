@@ -400,31 +400,6 @@ body {
     border-radius: 10px;
 }
 
-/* Users View */
-.user-view {
-    display: flex;
-    gap: 20px;
-}
-
-.user-view-title {
-    font-weight: 600;
-    font-size: 24px;
-    text-align: left;
-    color: var(--ligth-color-text)
-}
-
-.tickets-pending {
-    flex: 0.3;
-}
-
-.appmnt-data {
-    flex: 1;
-}
-
-.user-view-title ul{
-    
-}
-
 /* Ticket Validation Page */
 .validate-ticket-page {
     display: flex;
@@ -452,4 +427,277 @@ body {
     margin-top: 30px;
     font-size: 15px;
     text-align: center;
+}
+
+/* Modal ticket queue */
+.top-modal-row {
+    display: flex;
+    width: 100%;
+}
+
+.ticket-queue-container, .qr-queue-code-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-ticket-queue {
+    display: flex;
+    flex-direction: column;
+}
+
+.qr-paragraph, .ticket-modal-paragraph{
+    text-align: center;
+}
+
+.qr-paragraph {
+    font-size: 14px;
+}
+
+.ticket-modal-paragraph {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.ticket-queue-container {
+    position: relative;
+}
+
+.ticket-queue-data {
+    position: absolute;
+    height: 250px;
+    width: 290px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 15px;
+}
+
+.queue-top-info {
+    margin-bottom: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.queue-center-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.queue-bottom-info {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.code-queue-ticket {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.turn-queue-ticket{
+    font-size: 35px;
+    font-weight: 500;
+}
+
+/* ADMIN PAGE */
+.admin-page {
+    display: flex;
+}
+
+.stadistics {
+    flex: 0.35;
+    padding-right: 50px;
+}
+
+.table-container {
+    flex: 1;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.table-options, .date-filter {
+    display: flex;
+}
+
+.table-options {
+    padding-inline: 20px;
+    padding-top: 50px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table-options h2 {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+.status-filter {
+    display: flex;
+    gap: 20px;
+    color: #b6b6b6;
+}
+.status-filter a{
+    font-size: 12px;
+    font-weight: 550;
+    padding: 9px;
+    /* background-color: #e0e7ff; */
+    border-radius: 50px;
+}
+
+.table-appmnts {
+    margin-top: 20px;
+}
+
+th, td {
+    padding-inline: 50px;
+}
+
+.date-filter {
+    display: flex;
+    gap: 20px;
+}
+
+.date-filter .input-group {
+    width: 195px;
+}
+
+.loader-percent,
+.loader-title {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.loader-min {
+    font-size: 15px;
+}
+
+.loader-slash {
+    font-size: 20px;
+}
+
+.info-loader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-asis span{
+    color: #198754;
+}
+.info-aus span{
+    color: #dc3545;
+}
+
+.aus {
+    margin-top: 40px;
+}
+
+/* Login FORM */
+.login-page {
+    padding-top: 130px;
+}
+
+.form-container-login {
+    margin-top: 30px    ;
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form {
+    width: 30%;
+}
+
+.last-group {
+    margin-bottom: 20px;
+}
+
+/* Users View */
+.user-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.title-user-view{
+    text-align: center;
+}
+
+.appmnt-info {
+    width: 50%;
+}
+
+.row-appmnt-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.appmnt-data-label {
+    font-weight: 600;
+}
+
+.appmnt-data-value{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.appmnt-type-user {
+    text-align: center;
+}
+
+.client-data, .appmnt-data {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.appmnt-type-user {
+    padding: 0;
+    margin: 30px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.user-title {
+    margin: 0;
+}
+
+.title-user-view {
+    margin-bottom: 20px;
+}
+
+.appmnt-data-label-description {
+    width: 100%;
+    margin-block: 5px;
+    text-align: center;
+}
+
+.next-appmnt-btn{
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    padding: 0px;
+}
+
+.container-bank {
+    width: 10%;
+    position: absolute;
+    bottom: 0px;
+    left: 40px;
+
+}
+
+.form-control {
+    width: 20px;
 }

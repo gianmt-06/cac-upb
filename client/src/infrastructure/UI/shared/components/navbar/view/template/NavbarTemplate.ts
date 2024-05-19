@@ -11,21 +11,20 @@ export const getNavbar = () => {
             </div>
 
             <ul class="nav-links">
-                <li class="nav-link"><a href="">Nosotros</a></li>
+                <li class="nav-link"><a href="/home">Nosotros</a></li>
                 <li class="nav-link">
                     <div class="dropdown ">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Citas</a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Agenda tu cita</a></li>
-                            <li><a class="dropdown-item" href="#">Reagenda tu cita</a></li>
-                            <li><a class="dropdown-item" href="#">Cancela tu cita</a></li>
-                            <li><a class="dropdown-item" href="#">Tutorial </a></li>
+                            <li><a class="dropdown-item" href="/citas">Agenda tu cita</a></li>
+                            <li><a class="dropdown-item" href="/citas/modify">Reagenda tu cita</a></li>
+                            <li><a class="dropdown-item" href="/citas/cancel">Cancela tu cita</a></li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-link"><a href="">Tickets</a></li>
-                <li class="nav-link"><a href="">Ingresar</a></li>
+                <li class="nav-link"><a href="/tickets">Tickets</a></li>
+                <li class="nav-link"><a href="/login">Ingresar</a></li>
             </ul>
         </div>
         `
