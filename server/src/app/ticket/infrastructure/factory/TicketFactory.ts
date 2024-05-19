@@ -14,7 +14,7 @@ import TicketRepository from "../repository/TicketRepository/TicketRepository";
 export default class TicketFactory {
     
     public static createRouter = () : ExpressRouter => {
-        const ticketQueue = TicketQueue.getInstance(2);        
+        const ticketQueue = TicketQueue.getInstance(4);        
         const ticketRepository = new TicketRepository(ticketQueue);
 
         const createTicketRepo = new CreateTicketRepository(ticketRepository);

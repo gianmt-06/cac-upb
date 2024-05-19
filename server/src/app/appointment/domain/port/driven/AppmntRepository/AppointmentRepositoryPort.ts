@@ -2,5 +2,6 @@ import Repository from "../../../../../shared/infrastructure/repository/Reposito
 import AppmntDTO from "../../../model/AppointmentDTO/AppmntDTO";
 
 export interface AppmntRepositoryPort extends Repository<AppmntDTO, string> {
-    getByCode: (codeAppmnt: string) => Promise<AppmntDTO>
+    getByCode: (codeAppmnt: string) => Promise<AppmntDTO>;
+    getById: (id: string) => Promise<AppmntDTO>
 }

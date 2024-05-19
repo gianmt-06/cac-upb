@@ -12,7 +12,7 @@ export default class TicketController {
     ){}
 
     //TYPE: BODY
-    //appmtid:string
+    //codeappmnt:string
     public addTicket = (req: Request, res: Response): void => {
         try {            
             const ticket = req.body as TicketDTO;

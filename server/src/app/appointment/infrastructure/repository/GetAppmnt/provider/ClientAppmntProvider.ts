@@ -19,4 +19,12 @@ export default class ClientAppmntProvider {
             return new NullClient();
         }
     }
+
+    public getClientById = async(id: string): Promise<AbstractClient> => {
+        try {
+            return this.getClientRepository.getClientById(id);
+        } catch (error) {
+            return new NullClient();
+        }
+    }
 }

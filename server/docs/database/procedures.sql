@@ -131,6 +131,17 @@ $$ LANGUAGE sql;
 
 -- Return Appointment: id, clientid, locationid, idtype, code, description, status, date, time
 
+CREATE OR REPLACE FUNCTION get_appointment_by_id(in_id INT)
+RETURNS SETOF v_appmnts
+AS 
+$$
+  SELECT * FROM v_appmnts WHERE id = in_id;
+$$ LANGUAGE sql;
+
+-- Return Appointment: id, clientid, locationid, idtype, code, description, status, date, time
+
+
+
 CREATE PROCEDURE update_appmnt (
     in_code VARCHAR(50),
     in_idlocation INTEGER,

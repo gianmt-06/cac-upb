@@ -13,6 +13,7 @@ export default class DBActionsConfig {
   GET_USER_BY_EMAIL: string;
 
   GET_APPOINTMENT_BY_CODE: string;
+  GET_APPOINTMENT_BY_ID: string;
   CREATE_APPOINTMENT: string;
   UPDATE_APPOINTMENT: string;
   DELETE_APPOINTMENT: string;
@@ -31,6 +32,7 @@ export default class DBActionsConfig {
     this.GET_CLIENT_BY_DOC = process.env["PG_GET_CLIENT_BY_DOC"] ?? this.DEFAULT;
 
     this.GET_APPOINTMENT_BY_CODE = process.env["PG_GET_APPOINTMENT_BY_CODE"] ?? this.DEFAULT;
+    this.GET_APPOINTMENT_BY_ID = process.env["PG_GET_APPOINTMENT_BY_ID"] ?? this.DEFAULT;
     this.CREATE_APPOINTMENT = process.env["PG_CREATE_APPOINTMENT"] ?? this.DEFAULT;
     this.UPDATE_APPOINTMENT = process.env["PG_UPDATE_APPOINTMENT"] ?? this.DEFAULT;
     this.DELETE_APPOINTMENT = process.env["PG_DELETE_APPOINTMENT"] ?? this.DEFAULT;

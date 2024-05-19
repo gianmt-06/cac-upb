@@ -9,5 +9,9 @@ export default class GetAppmntUseCase implements GetAppmntUseCasePort {
   getAppmnt = async(codeAppmnt: string, docClient: string, date: Date): Promise<AbstractAppointment> => {
     return await this.getAppmntService.getAppmnt(codeAppmnt, docClient, date);
   }
+  
+  getAppmntById = async(id: string): Promise<AbstractAppointment> => {
+    return await this.getAppmntService.getAppmntById(id);
+  }
 }
   

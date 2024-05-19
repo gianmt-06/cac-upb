@@ -22,7 +22,6 @@ export default class GetNextTicketRepository implements GetNextTicketRepositoryP
       return new NullTicket();
     }
   }
-
   
 }
   

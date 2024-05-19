@@ -9,10 +9,22 @@ export default class AppmntRepository implements AppmntRepositoryPort {
     constructor(private readonly databaseConection: AppmntDatabaseConection) {
         this.databaseActions = new DBActionsConfig();
     }
-
+    
     getByCode!: (codeAppmnt: string) => Promise<AppmntDTO>;
-  
+    
     getAll!: () => Promise<AppmntDTO[]>;
+    
+    getById = async (id: string): Promise<AppmntDTO> => {
+        try {
+            const {rows} = await this.databaseConection.query(
+                this.databaseActions.GET_APPOINTMENT_BY_ID,
+                [id]
+            )
+            return rows[0] as AppmntDTO;
+        } catch (error) {
+            throw Error
+        }
+    }
 
     getOne = async (code: string):Promise<AppmntDTO> => {
         try {
