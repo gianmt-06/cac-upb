@@ -11,9 +11,12 @@ export default class TicketController {
         private readonly getQueueUseCase: GetQueueUseCasePort
     ){}
 
-    public getLocations = (req: Request, res: Response): void => {
+    //TYPE: BODY
+    //appmtid:string
+    public addTicket = (req: Request, res: Response): void => {
         try {            
             const ticket = req.body as TicketDTO;
+            ticket.status = 'active';
 
             this.createTicketUseCase.createTicket(ticket).then(value => {
                 res.status(200).json({created: value});

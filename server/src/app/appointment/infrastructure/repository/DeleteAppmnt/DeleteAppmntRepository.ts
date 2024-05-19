@@ -4,7 +4,7 @@ import DeleteAppmntRepositoryPort from '../../../domain/port/driven/DeleteAppmnt
 export default class DeleteAppmntRepository implements DeleteAppmntRepositoryPort {
   constructor(private readonly appmntRepository: AppmntRepositoryPort){}
   
-  deleteAppmnt = async(id: string): Promise<boolean> => {
-    return await this.appmntRepository.delete(id);
+  deleteAppmnt = async(code: string): Promise<boolean> => {
+    return await this.appmntRepository.delete(code);
   }
 }

@@ -6,8 +6,8 @@ import ModifyAppmntUseCasePort from '../../../domain/port/driver/ModifyAppmnt/Mo
 export default class ModifyAppmntUseCase implements ModifyAppmntUseCasePort {
   constructor(private readonly modifyAppmntService: ModifyAppmntServicePort) {
   }
-  modifyAppmt(id: string, partialAppmnt: AppmntDTO): Promise<boolean> {
-    return this.modifyAppmntService.modifyAppmt(id, partialAppmnt);
+  modifyAppmt(code: string, partialAppmnt: AppmntDTO): Promise<boolean> {
+    return this.modifyAppmntService.modifyAppmt(code, partialAppmnt);
   }
 }
   

@@ -1,5 +1,6 @@
 
 import AppmntType from '../../../domain/model/AppointmentType/AppmntType';
+import AbstractAppointment from '../../../domain/model/appointment/AbstractAppointment';
 import Appointment from '../../../domain/model/appointment/Appointment';
 import NullAppointment from '../../../domain/model/appointment/NullAppointment';
 import { AppmntRepositoryPort } from '../../../domain/port/driven/AppmntRepository/AppointmentRepositoryPort';
@@ -17,7 +18,7 @@ export default class GetAppmntRepository implements GetAppmntRepositoryPort {
     this.clientProvider = new ClientAppmntProvider();
   }
 
-  getAppmnt = async (codeAppmnt: string, docClient: string, date: Date): Promise<Appointment> => {
+  getAppmnt = async (codeAppmnt: string, docClient: string, date: Date): Promise<AbstractAppointment> => {
     try {
       const appmnt = await this.appmntRepository.getOne(codeAppmnt);
 

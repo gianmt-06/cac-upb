@@ -6,8 +6,8 @@ import ModifyAppmntServicePort from '../../../domain/port/driver/ModifyAppmnt/Mo
 export default class ModifyAppmntService implements ModifyAppmntServicePort {
   constructor(private readonly modifyAppmntRepository: ModifyAppmntRepositoryPort) {}
 
-  modifyAppmt(id: string, partialAppmnt: AppmntDTO): Promise<boolean> {
-    return this.modifyAppmntRepository.modifyAppmt(id, partialAppmnt)
+  modifyAppmt(code: string, partialAppmnt: AppmntDTO): Promise<boolean> {
+    return this.modifyAppmntRepository.modifyAppmt(code, partialAppmnt)
   }
 }
   

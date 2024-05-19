@@ -12,7 +12,7 @@ export default class AppointmentTypeRepository implements AppmntTypeRepositoryPo
     
     getAll = async():Promise<AppmntTypeDTO[]> => {
         try {
-            const { rows } = await this.databaseConection.query('SELECT * FROM appointmenttypes')
+            const { rows } = await this.databaseConection.query('SELECT * FROM v_appmnt_types')
             return rows as AppmntTypeDTO[];
         } catch (error) {
             throw new Error("Error al obtener tipos")

@@ -132,7 +132,7 @@ $$ LANGUAGE sql;
 -- Return Appointment: id, clientid, locationid, idtype, code, description, status, date, time
 
 CREATE PROCEDURE update_appmnt (
-    in_id INTEGER,
+    in_code VARCHAR(50),
     in_idlocation INTEGER,
     in_idtype INTEGER,
     in_description VARCHAR(250),
@@ -150,7 +150,7 @@ AS $$
     date = in_date,
     time = in_time 
     WHERE
-    id = in_id;
+    code = in_code;
 $$;
 
 -- NO RETURN
@@ -173,15 +173,15 @@ $$;
 
 -- NO RETURN
 
-CREATE PROCEDURE delete_appmnt (
-  in_idAppmnt INTEGER
+CREATE PROCEDURE delete_appmnt_by_code(
+  in_code VARCHAR(50)
 )
 LANGUAGE SQL 
 AS $$
     DELETE FROM 
     v_appmnts 
     WHERE 
-    id = in_idAppmnt;
+    code = in_code;
 $$;
 
 -- NO RETURN

@@ -5,8 +5,8 @@ import DeleteAppmntUseCasePort from '../../../domain/port/driver/DeleteAppmnt/De
 export default class DeleteAppmntUseCase implements DeleteAppmntUseCasePort {
   constructor(private readonly deleteAppmntService: DeleteAppmntServicePort){}
 
-  deleteAppmnt = async(id: string): Promise<boolean> => {
-    return this.deleteAppmntService.deleteAppmnt(id);
+  deleteAppmnt = async(code: string): Promise<boolean> => {
+    return this.deleteAppmntService.deleteAppmnt(code);
   }
 }
   

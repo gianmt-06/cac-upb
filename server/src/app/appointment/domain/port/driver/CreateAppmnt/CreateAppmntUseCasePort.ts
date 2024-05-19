@@ -1,6 +1,6 @@
 import AppmntDTO from "../../../model/AppointmentDTO/AppmntDTO";
 
 export default interface CreateAppmntUseCasePort {
-  createAppmnt(appointment: AppmntDTO): Promise<boolean>
+  createAppmnt(clientdoc: string, appointment: AppmntDTO): Promise<boolean>
 }
   

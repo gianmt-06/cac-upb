@@ -28,6 +28,8 @@ export default class AppmntRepository implements AppmntRepositoryPort {
     
     save = async (appmnt: AppmntDTO): Promise<boolean> => {
         try {
+            console.log(appmnt);
+            
             await this.databaseConection.query(
                 this.databaseActions.CREATE_APPOINTMENT,
                 [
@@ -48,12 +50,12 @@ export default class AppmntRepository implements AppmntRepositoryPort {
         }
     };
 
-    update = async(key: string, partialAppmnt: AppmntDTO): Promise<boolean> => {
+    update = async(code: string, partialAppmnt: AppmntDTO): Promise<boolean> => {
         try {
             await this.databaseConection.query(
                 this.databaseActions.UPDATE_APPOINTMENT,
                 [
-                    key, //Cambiar por el codigo de la cita
+                    code,
                     partialAppmnt.locationid,
                     partialAppmnt.idtype,
                     partialAppmnt.description,
@@ -69,9 +71,9 @@ export default class AppmntRepository implements AppmntRepositoryPort {
         }
     }
 
-    delete = async(id: string): Promise<boolean> => {
+    delete = async(code: string): Promise<boolean> => {
         try {
-            await this.databaseConection.query(this.databaseActions.DELETE_APPOINTMENT, [id])
+            await this.databaseConection.query(this.databaseActions.DELETE_APPOINTMENT, [code])
             return true;
         } catch (error) {
             throw new Error("Error al eliminar la cita")

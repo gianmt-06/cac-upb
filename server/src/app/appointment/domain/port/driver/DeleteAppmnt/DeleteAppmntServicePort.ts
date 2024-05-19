@@ -1,4 +1,4 @@
 export default interface DeleteAppmntServicePort {
-  deleteAppmnt(id: string): Promise<boolean>
+  deleteAppmnt(code: string): Promise<boolean>
 }
   

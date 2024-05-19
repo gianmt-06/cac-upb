@@ -24,29 +24,40 @@ export default class AppointmentController extends Controller {
       try {
           const {code, docClient, date} = req.body;
 
-          this.getAppointmentUseCase.getAppmnt(code, docClient, new Date(date)).then(appointment => {
-            res.status(200).json(appointment);
-          }).catch(error => {
-            res.status(500).json(error);
+          this.getAppointmentUseCase.getAppmnt(code, docClient, new Date(date)).then((appointment) => {
+            if(!appointment.isNull()){
+              res.status(200).json(this.responseHandler.response("Cita obtenida con exito", appointment));
+              return;
+            }
+            res.status(400).json(this.responseHandler.throwError("Error al obtener la cita: Datos incorrectos o cita no registrada"))
           })
-          
+
       } catch (error) {
-          res.status(500).json({error: true})
+          res.status(500).json(this.responseHandler.serverError())
       }
   }
 
+    //TYPE: QUERY
+    //clientdoc:string
+
     // Type: BODY
-    // clientid: number, locationid:number, idtype:number, description:string, date:string, time:string; 
+    // locationid:number, idtype:number, description:string, date:string -> format:MM-DD-YY, time:string --> format:HH-MM-SS; 
     public createAppmnt = (req: Request, res: Response): void => {
         try {
+            const { clientdoc } = req.query;
             const appointment = req.body as AppmntDTO;
             
-            this.createAppointmentUseCase.createAppmnt(appointment).then(value => {
+            if(!clientdoc) {
+              res.status(400).json(this.responseHandler.throwError("Error al agendar la cita"))
+              return;
+            } 
+
+            this.createAppointmentUseCase.createAppmnt(clientdoc?.toString(), appointment).then(value => {
               if(value) {
                 res.status(200).json(this.responseHandler.response("Cita agendada con exito"))
                 return;
               }
-              res.status(400).json(this.responseHandler.response("Error al agendar la cita"))
+              res.status(400).json(this.responseHandler.throwError("Error al agendar la cita"))
             }).catch(_error => {
               res.status(500).json(this.responseHandler.serverError());
             });
@@ -60,50 +71,53 @@ export default class AppointmentController extends Controller {
     // code: string 
     
     // Type: BODY
-    // locationid:number, idtype:number, description:string, date:string, time:string; 
+    // locationid:number, idtype:number, description:string, date:string -> format:MM-DD-YY, time:string --> format:HH-MM-SS; 
     public updateAppmnt = (req: Request, res: Response): void => {
       try {
-          const idAppmnt = req.params.idAppmnt;
+          const code = req.params.code;
           const appointment = req.body as AppmntDTO;
 
-          this.modifyAppointmentUseCase.modifyAppmt(idAppmnt, appointment);
+          this.modifyAppointmentUseCase.modifyAppmt(code, appointment).then((value) => {
+            if(value) {
+              res.status(200).json(this.responseHandler.response("Cita actualizada con exito"));
+              return;
+            }
+            res.status(400).json(this.responseHandler.throwError("Error al actualizar la cita"));
+          });
           
-          res.status(200).json({created: true});
       } catch (error) {
-          res.status(500).json({error: true})
+          res.status(500).json(this.responseHandler.serverError());
       }
     }
 
+    //TYPE: PARAMS
+    //code:string
     public deleteAppmnt = (req: Request, res: Response): void => {
       try {
-          const idAppmnt = req.params.idAppmnt;
+          const code = req.params.code;
 
-          this.deleteAppointmentUseCase.deleteAppmnt(idAppmnt);
+          this.deleteAppointmentUseCase.deleteAppmnt(code).then((value) => {
+            if(value) {
+              res.status(200).json(this.responseHandler.response("La cita fue cancelada con exito"));
+              return;
+            }
+            res.status(400).json(this.responseHandler.throwError("Error al eliminar la cita"));
+          });
           
-          res.status(200).json({deleted: true});
       } catch (error) {
-          res.status(500).json({error: true})
+          res.status(500).json(this.responseHandler.serverError());
       }
     }
 
     public getAppmntTypes = (_req: Request, res: Response): void => {
       try {
-          this.getAppmntTypesUseCase.getAppmntTypes().then(ApponitmentTypes => {
-            res.status(200).json({ApponitmentTypes});
-          }).catch(_error => {
-            throw Error
-          });
+
+          this.getAppmntTypesUseCase.getAppmntTypes().then((apponitmentTypes) => {
+            res.status(200).json(this.responseHandler.response("Tipos de cita obtenidos con exito", apponitmentTypes));
+          })
           
       } catch (error) {
-          res.status(500).json({error: true})
-      }
-    }
-
-    public checkHealty = (_req: Request, res: Response): void => {
-      try {
-        res.status(200).json({status: 'active'})
-      } catch (error) {
-        res.status(500).json({message: 'server error'})
+          res.status(500).json(this.responseHandler.serverError())
       }
     }
 }

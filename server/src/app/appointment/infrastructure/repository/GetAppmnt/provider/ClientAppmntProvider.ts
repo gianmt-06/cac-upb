@@ -14,7 +14,7 @@ export default class ClientAppmntProvider {
 
     public getClient = async(docNumber: string): Promise<AbstractClient> => {
         try {
-            return this.getClientRepository.getClientById(docNumber);
+            return this.getClientRepository.getClientByDocument(docNumber);
         } catch (error) {
             return new NullClient();
         }

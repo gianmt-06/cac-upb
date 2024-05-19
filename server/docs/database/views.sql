@@ -64,6 +64,6 @@ CREATE VIEW v_appmnt_types AS
 SELECT 
     idappmttype as id,
     description as description
-FROM appointments;
+FROM appointmenttypes;
 
 -- appmntTypes: id, description
