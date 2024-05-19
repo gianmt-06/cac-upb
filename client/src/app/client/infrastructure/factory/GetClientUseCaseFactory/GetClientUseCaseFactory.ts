@@ -1,4 +1,5 @@
 import Repository from "../../../../../shared/infrastructure/repository/Repository";
+import Response from "../../../../shared/domain/model/APIResponse/Response";
 import GetClientService from "../../../application/service/GetClient/GetClientService";
 import GetClientUseCase from "../../../application/usecase/GetClient/GetClientUseCase";
 import ClientDTO from "../../../domain/model/ClientDTO/ClientDTO";
@@ -7,7 +8,7 @@ import GetClientRepository from "../../repository/GetClientRepository/GetClientR
 
 export default class GetClientUseCaseFactory {
     public static createUseCase = (): GetClientUseCasePort => {
-        const clientRepository = new Repository<ClientDTO>;
+        const clientRepository = new Repository<Response<ClientDTO>>;
 
         const getClientRepo = new GetClientRepository(clientRepository);
         const getClientService = new GetClientService(getClientRepo);

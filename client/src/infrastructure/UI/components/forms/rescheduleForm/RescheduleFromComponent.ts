@@ -12,4 +12,12 @@ export default class RescheduleFormComponent implements Component {
     public deploy = (): void => {
         this.RescheduleFormController.init()
     }
+
+    setFormAction(action: Function){
+        this.RescheduleFormController.setFormAction(action);
+    }
+
+    public setValidateAction(action: Function, loadHandler: Function){
+        this.RescheduleFormController.setValidateAction(action, loadHandler)
+      }
 }

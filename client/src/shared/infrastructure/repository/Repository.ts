@@ -22,7 +22,7 @@ export default class Repository<T> implements RepositoryPort<T>{
         }
     }
 
-    post = async(url: string, body: T) => {
+    post = async(url: string, body: any) => {
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -36,7 +36,7 @@ export default class Repository<T> implements RepositoryPort<T>{
         }
     }
 
-    put = async(url: string, body: T): Promise<T> => {
+    put = async(url: string, body: any): Promise<T> => {
         try {
             const response = await fetch(url, {
                 method: 'PUT',
@@ -50,7 +50,7 @@ export default class Repository<T> implements RepositoryPort<T>{
         }
     }
 
-    patch = async(url: string, body: T): Promise<T> => {
+    patch = async(url: string, body: any): Promise<T> => {
         try {
             const response = await fetch(url, {
                 method: 'PUTCH',

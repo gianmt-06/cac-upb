@@ -49,7 +49,6 @@ export const getRescheduleForm = () => {
             <div class="row button-container">
                 <button type="submitt" class="btn btn-outline-dark agendar-button" id="submitButton">Agendar</button>
             </div>
-        
         <form/>
         `
 }

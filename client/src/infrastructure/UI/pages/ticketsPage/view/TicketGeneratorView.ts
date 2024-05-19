@@ -6,6 +6,9 @@ import { getTicketTemplate } from "./template/TicketViewTemplate.js";
 
 export default class TicketsGeneratorView extends View {
     private components: Component[];
+    private form!: RescheduleFormComponent;
+    private navbar!: NavbarComponent;
+
 
     constructor(parent: HTMLElement){
         super(parent, getTicketTemplate())
@@ -13,10 +16,21 @@ export default class TicketsGeneratorView extends View {
     }
 
     public render = async(): Promise<void> => {
-        await this.load()
-        this.components.push(new NavbarComponent(document.querySelector('#navbar') as HTMLDivElement));
-        this.components.push(new RescheduleFormComponent(document.querySelector('#formTicketContainer') as HTMLDivElement));
+        this.load()
+        this.loadComponents();
+    }
+
+    public loadComponents = () => {
+        this.navbar = new NavbarComponent(document.querySelector('#navbar') as HTMLDivElement);
+        this.form = new RescheduleFormComponent(document.querySelector('#formTicketContainer') as HTMLDivElement);
+
+        this.components.push(this.navbar);
+        this.components.push(this.form);
 
         this.components.forEach((component: Component) => component.deploy());
+    }
+
+    formAction(action: Function){
+        this.form.setFormAction(action);
     }
 }

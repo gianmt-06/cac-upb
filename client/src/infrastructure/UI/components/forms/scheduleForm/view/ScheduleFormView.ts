@@ -1,4 +1,5 @@
 import AppmntType from "../../../../../../app/appointment/domain/model/AppointmentType/AppmntType.js";
+import Appointment from "../../../../../../app/appointment/domain/model/appointment/Appointment.js";
 import Client from "../../../../../../app/client/domain/model/Client/Client.js";
 import Location from "../../../../../../app/location/domain/model/location/Location.js";
 import View from "../../../../../../util/view/View.js";
@@ -22,8 +23,11 @@ export default class ScheduleFormView extends View {
         const docNumberInput = document.getElementById('docNumber') as HTMLInputElement;
         docNumberInput?.addEventListener('blur', () => {
             handler(docNumberInput.value).then((value: Client) => {
+                console.log(value);
+                
                 (document.getElementById('userNames') as HTMLInputElement).value = value.getName();
                 (document.getElementById('userLastNames') as HTMLInputElement).value = value.getLastname();
+                (document.getElementById('documentType') as HTMLSelectElement).value = value.getDocType();
             })
         })
     }
@@ -34,14 +38,15 @@ export default class ScheduleFormView extends View {
         const selectPlaces = document.getElementById('asignedPlace') as HTMLSelectElement;
         let allLocations: Location[];
 
-
         handler().then((locations: Location[]) => {
             allLocations = locations;
 
+            console.log(allLocations);
+            
             this.changeOptions(selectStates, allLocations.map(location => {
                 return {
                     value: location.getId(),
-                    text: location.getCity()
+                    text: location.getState()
                 }
             }))
         })
@@ -100,22 +105,27 @@ export default class ScheduleFormView extends View {
 
        form.addEventListener('submit', (event) => {
             event.preventDefault();
-            console.log('ENVIANDOOOOOOOOOOO');
-            
+
+            const docNumber = (document.getElementById('docNumber') as HTMLInputElement).value;
+
             const data = {
-                clientid:(document.getElementById('docNumber') as HTMLInputElement).value,
-                location:(document.getElementById('asignedPlace') as HTMLSelectElement).value,
-                type:(document.getElementById('requestType') as HTMLInputElement).value,
-                code: "EEEAPA",
+                locationid:(document.getElementById('asignedPlace') as HTMLSelectElement).value,
+                idtype:(document.getElementById('requestType') as HTMLInputElement).value,
                 description:(document.getElementById('requestDetails') as HTMLTextAreaElement).value,
-                date:(document.getElementById('date') as HTMLInputElement).value + ' 06:00:00', 
+                clientid:(document.getElementById('docNumber') as HTMLInputElement).value,
+                date:(document.getElementById('date') as HTMLInputElement).value,
+                time: "06:00:000" 
             }
 
-            console.log(data);
-            
-            bind(data).then((value: any) => {
+            bind(data, docNumber).then((value: any) => {
                 console.log(value);
             })
        })
+    }
+
+    public setDefaultData = (data: Appointment) => {
+        console.log('imprimiendo info');
+        
+       console.log(data);
     }
 }

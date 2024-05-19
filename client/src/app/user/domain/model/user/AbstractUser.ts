@@ -13,12 +13,14 @@ export default abstract class AbstractUser extends AbstractPerson {
         name: string,
         lastname: string, 
         docNumber: string, 
+        docType: string,
         email: string, 
         location: Location
     ){
         super(
             name,
             lastname,
+            docType,
             docNumber
         );
         this.email = email;

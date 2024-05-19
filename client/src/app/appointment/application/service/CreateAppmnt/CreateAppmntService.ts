@@ -5,8 +5,8 @@ import CreateAppmntServicePort from '../../../domain/port/driver/CreateAppmnt/Cr
 export default class CreateAppmntService implements CreateAppmntServicePort {
   constructor(private readonly createAppointmentRepository: CreateAppmntRepositoryPort){}
 
-  createAppmnt = async(appointment: AppmntDTO): Promise<boolean> => {
-    return await this.createAppointmentRepository.createAppmnt(appointment)
+  createAppmnt = async(appointment: AppmntDTO, clientdoc: string): Promise<boolean> => {
+    return await this.createAppointmentRepository.createAppmnt(appointment, clientdoc)
   }
 }
   

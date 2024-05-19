@@ -6,8 +6,8 @@ import CreateAppmntUseCasePort from '../../../domain/port/driver/CreateAppmnt/Cr
 export default class CreateAppmntUseCase implements CreateAppmntUseCasePort {
   constructor(private readonly createAppmntService: CreateAppmntServicePort) {}
 
-  createAppmnt = async(appointment: AppmntDTO): Promise<boolean> => {
-    return await this.createAppmntService.createAppmnt(appointment);
+  createAppmnt = async(appointment: AppmntDTO, clientdoc: string): Promise<boolean> => {
+    return await this.createAppmntService.createAppmnt(appointment, clientdoc);
   }
 }
   

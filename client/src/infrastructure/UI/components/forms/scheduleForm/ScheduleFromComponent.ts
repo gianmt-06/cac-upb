@@ -1,3 +1,4 @@
+import Appointment from "../../../../../app/appointment/domain/model/appointment/Appointment.js";
 import Component from "../../../../../util/component/Component.js";
 import ScheduleFormController from "./controller/ScheduleFormController.js";
 import ScheduleFormView from "./view/ScheduleFormView.js";
@@ -31,5 +32,9 @@ export default class ScheduleFormComponent implements Component {
 
     public createAppmnt = (bind: Function) => {
         this.scheduleFormController.createAppmnt(bind)
+    }
+
+    public setDefaultData = (data: Appointment) => {
+        this.scheduleFormController.setDefaultData(data);
     }
 }

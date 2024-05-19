@@ -14,6 +14,7 @@ export default abstract class AbstractClient extends AbstractPerson {
         name: string,
         lastname: string,
         docNumber: string,
+        docType: string,
         typeClient: clientType,
         birth: Date,
         idClient: string
@@ -21,15 +22,15 @@ export default abstract class AbstractClient extends AbstractPerson {
         super(
             name,
             lastname,
+            docType,
             docNumber
         );
 
         this.typeClient = typeClient;
         this.birth = birth;
         this.idClient = idClient
+        
     }
-
-    public abstract override isNull(): boolean;
 
     public getId(): string {
         return this.idClient;
