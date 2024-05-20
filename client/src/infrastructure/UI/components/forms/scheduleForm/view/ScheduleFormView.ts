@@ -124,8 +124,17 @@ export default class ScheduleFormView extends View {
     }
 
     public setDefaultData = (data: Appointment) => {
-        console.log('imprimiendo info');
+        // const locationid = (document.getElementById('asignedPlace') as HTMLSelectElement);
+        // const requestType = (document.getElementById('requestType') as HTMLInputElement)
+        // const description = (document.getElementById('requestDetails') as HTMLTextAreaElement)
+        // const clientid = (document.getElementById('docNumber') as HTMLInputElement)
+        // const date = (document.getElementById('date') as HTMLInputElement)
+        // const time = "06:00:000" 
+
+        // locationid.value = data.getLocation().getId();
+        // requestType.value = data.geo
+
         
-       console.log(data);
+        console.log(data);
     }
 }

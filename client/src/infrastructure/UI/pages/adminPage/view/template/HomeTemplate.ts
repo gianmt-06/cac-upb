@@ -34,11 +34,13 @@ export const getTemplate = () => {
             <div class="table-container">
                 <div class="table-options">
                     <h2>Reporte Citas</h2>
-                    <div class="status-filter">
-                        <a>Todas</a>
-                        <a>Asistidas</a>
-                        <a>No Asistidas</a>
-                    </div>      
+                    <!-- 
+                        <div class="status-filter">
+                            <a>Todas</a>
+                            <a>Asistidas</a>
+                            <a>No Asistidas</a>
+                        </div> 
+                     
                     <div class="date-filter">
                         <div class="input-group has-validation">
                             <span class="input-group-text">
@@ -65,6 +67,7 @@ export const getTemplate = () => {
                             </div>
                         </div>
                     </div>
+                    -->   
                 </div>    
             
                 <table class="table table-borderless table-appmnts">

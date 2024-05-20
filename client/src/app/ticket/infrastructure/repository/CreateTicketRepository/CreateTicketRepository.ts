@@ -6,6 +6,6 @@ export default class CreateTicketRepository implements CreateTicketRepositoryPor
     constructor(private readonly ticketRepository: Repository<TicketDTO>){}
 
     createTicket = async(ticket: TicketDTO): Promise<TicketDTO> => {
-        return await this.ticketRepository.post("http://localhost:5000/ticket/add", ticket)
+        return await this.ticketRepository.post("http://localhost:5001/ticket/generate", ticket)
     }
 }

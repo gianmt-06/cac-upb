@@ -42,7 +42,12 @@ export default class RescheduleView extends View {
         if(container) container.innerHTML = '';
 
         this.scheduleForm = new ScheduleFormComponent(container);
-        this.scheduleForm.setDefaultData(data)
+        this.scheduleForm.setDefaultData(data);
         this.scheduleForm.deploy()
+    }
+
+    public setActionsScheduleForm = (getLocations: Function, getAppmntTypes: Function) => {
+        this.scheduleForm.getLocations(getLocations);
+        this.scheduleForm.getAppmntTypes(getAppmntTypes);
     }
 }

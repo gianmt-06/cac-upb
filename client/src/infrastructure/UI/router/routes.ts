@@ -52,8 +52,10 @@ export const routes: RouteInterfaceN[] = [
                 name: 'reagendar',
                 path: 'modify',
                 routeController: new RescheduleController(
-                    new RescheduleView(layout),
-                    AppmntUseCasesFactory.ValidateAppmntUseCase()
+                        new RescheduleView(layout),
+                        AppmntUseCasesFactory.ValidateAppmntUseCase(),
+                        GetLocationsUseCaseFactory.createUseCase(),
+                        AppmntUseCasesFactory.GetAppmntTypesUseCase()
                     ),
                 // childrens: [
                 //     {
