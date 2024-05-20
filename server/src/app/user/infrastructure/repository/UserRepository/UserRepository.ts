@@ -1,6 +1,6 @@
 
 import UserDTO from "../../../domain/model/userDTO/UserDTO";
-import UserDatabaseConection from "../../postgresql/UserDatabaseConection";
+import UserDatabaseConection from "../../../domain/port/driven/DatabaseConection/UserDatabaseConection";
 import { UserRepositoryPort } from "../../../domain/port/driven/UserRepository/UserRepositoryPort";
 
 import DBActionsConfig from "../../../../../postgresql/config/DatabaseActions";

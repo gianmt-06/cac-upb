@@ -4,10 +4,12 @@ import ClientDTO from "../../../../domain/model/ClientDTO/ClientDTO";
 
 export default class ClientProvider {
     public getClient = (databaseClient: ClientDTO): AbstractClient => {
+        
         return new Client(
             databaseClient.name,
             databaseClient.lastname,
             databaseClient.docnumber,
+            databaseClient.doctype,
             {
                 id: databaseClient.idtype,
                 description: databaseClient.idtype

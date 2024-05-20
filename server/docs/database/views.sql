@@ -25,6 +25,7 @@ CREATE VIEW v_location AS SELECT
     idLocation AS id,
     nameLocation as name,
     city as city,
+    state as state,
     address as address
  FROM locations;
 

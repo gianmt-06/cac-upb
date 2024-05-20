@@ -3,13 +3,16 @@ import CreateTicketUseCasePort from "../../../domain/port/driver/CreateTicket/Cr
 import TicketDTO from "../../../domain/model/TicketDTO/TicketDTO"
 import GetNextTicketUseCasePort from "../../../domain/port/driver/GetNextTicket/GetNextTicketUseCasePort";
 import GetQueueUseCasePort from "../../../domain/port/driver/GetQueue/GetQueueUseCasePort";
+import Controller from "../../../../../express/controller/Controller";
 
-export default class TicketController {
+export default class TicketController extends Controller {
     constructor(
         private readonly createTicketUseCase: CreateTicketUseCasePort,
         private readonly nexTicketUseCase: GetNextTicketUseCasePort,
         private readonly getQueueUseCase: GetQueueUseCasePort
-    ){}
+    ){
+        super();
+    }
 
     //TYPE: BODY
     //codeappmnt:string
@@ -33,13 +36,11 @@ export default class TicketController {
         try {            
 
             this.nexTicketUseCase.getNextTicket().then(ticket => {
-                res.status(200).json(ticket);
-            }).catch((_error) => {
-                res.status(500).json({error: 'Error de servidor'})
+                res.status(200).json(this.responseHandler.response("Ticket obtenido con exito", ticket));
             })
 
         } catch (error) {
-            res.status(500).json({error: true})
+            res.status(500).json(this.responseHandler.serverError())
         }
     }
 

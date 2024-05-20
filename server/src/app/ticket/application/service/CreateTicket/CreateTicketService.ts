@@ -1,4 +1,5 @@
 
+import Ticket from '../../../domain/model/Ticket/Ticket';
 import TicketDTO from '../../../domain/model/TicketDTO/TicketDTO'
 import CreateTicketRepositoryPort from '../../../domain/port/driven/CreateTicket/CreateTicketRepositoryPort'
 import CreateTicketServicePort from '../../../domain/port/driver/CreateTicket/CreateTicketServicePort'
@@ -6,7 +7,7 @@ import CreateTicketServicePort from '../../../domain/port/driver/CreateTicket/Cr
 export default class CreateTicketService implements CreateTicketServicePort {
   constructor(private readonly createTicketRepository: CreateTicketRepositoryPort) {}
 
-  createTicket = async (ticket: TicketDTO): Promise<boolean> => {
+  createTicket = async (ticket: TicketDTO): Promise<Ticket> => {
     return await this.createTicketRepository.createTicket(ticket);
   }
 }

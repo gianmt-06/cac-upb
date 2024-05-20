@@ -12,8 +12,6 @@ import GetUserRepository from "../repository/GetUser/GetUserRepository";
 import UserRepository from "../repository/UserRepository/UserRepository";
 import GetUserUseCase from "../../application/usecase/GetUser/GetUserUseCase";
 import GetUserService from "../../application/service/GetUser/GetUserService";
-import GetLocationRepository from "../../../location/infrastructure/repository/GetLocation/GetLocationRepository";
-import LocationRepository from "../../../location/infrastructure/repository/LocationRepository/LocationRepository";
 import Hasher from "../../../../auth/Hasher/Hasher";
 import LogInRepository from "../repository/LogIn/LogInRepository";
 import LogInService from "../../application/service/LogIn/LogInService";
@@ -25,16 +23,13 @@ export default class UserFactory {
         const database = Database.getInstance();
 
         const userRepository = new UserRepository(database);
-        const locationRepository = new LocationRepository(database);
         const hasherManager = new Hasher();
 
-        const createUserRepo = new CreateUserRepository(userRepository, hasherManager);
-        const createUserService = new CreateUserService(createUserRepo);
+        const createUserRepo = new CreateUserRepository(userRepository);
+        const createUserService = new CreateUserService(createUserRepo, hasherManager);
         const createUserUseCase = new CreateUserUseCase(createUserService);
-
-        const getLocationRepo = new GetLocationRepository(locationRepository)
         
-        const getUserRepo = new GetUserRepository(userRepository, getLocationRepo);
+        const getUserRepo = new GetUserRepository(userRepository);
         const getUserService = new GetUserService(getUserRepo);
         const getUserUseCase = new GetUserUseCase(getUserService);
 

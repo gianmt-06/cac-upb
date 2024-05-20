@@ -1,5 +1,5 @@
 import DBActionsConfig from "../../../../../postgresql/config/DatabaseActions";
-import AppmntDatabaseConection from "../../postgresql/AppmntDatabaseConection";
+import AppmntDatabaseConection from "../../../domain/port/driven/DatabaseConection/AppmntDatabaseConection";
 import AppmntDTO from "../../../domain/model/AppointmentDTO/AppmntDTO";
 import { AppmntRepositoryPort } from "../../../domain/port/driven/AppmntRepository/AppointmentRepositoryPort";
 

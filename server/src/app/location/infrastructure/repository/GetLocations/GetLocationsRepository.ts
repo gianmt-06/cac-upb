@@ -17,6 +17,7 @@ export default class GetLocationsRepository implements GetLocationsRepositoryPor
           return new Location(
             databaseLocation.id,
             databaseLocation.city,
+            databaseLocation.state,
             databaseLocation.name,
             databaseLocation.address
           )

@@ -1,11 +1,13 @@
 export default abstract class AbstractPerson {
     private name: string;
     private lastname: string;
+    private docType: string;
     private docNumber: string;
 
-    constructor(name: string, lastname: string, docNumber: string){
+    constructor(name: string, lastname: string, docType: string, docNumber: string){
         this.name = name;
         this.lastname = lastname;
+        this.docType = docType;
         this.docNumber = docNumber;
     }
 
@@ -33,5 +35,13 @@ export default abstract class AbstractPerson {
     
     public setDocNumber(docNumber: string) {
         this.docNumber = docNumber;
+    }
+
+    public getDocType(): string{
+        return this.docType;
+    }
+    
+    public setDocType(docType: string) {
+        this.docType = docType;
     }
 }

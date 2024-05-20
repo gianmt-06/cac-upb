@@ -14,6 +14,7 @@ export default abstract class AbstractClient extends AbstractPerson {
         name: string,
         lastname: string,
         docNumber: string,
+        docType: string,
         typeClient: clientType,
         birth: Date,
         idClient: string
@@ -21,6 +22,7 @@ export default abstract class AbstractClient extends AbstractPerson {
         super(
             name,
             lastname,
+            docType,
             docNumber
         );
 

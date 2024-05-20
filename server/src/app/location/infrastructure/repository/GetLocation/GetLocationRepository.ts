@@ -19,6 +19,7 @@ export default class GetLocationRepository implements GetLocationRepositoryPort 
       return new Location(
         location.id,
         location.city,
+        location.state,
         location.name,
         location.address
       )

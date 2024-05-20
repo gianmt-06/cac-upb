@@ -3,13 +3,14 @@ import AbstractUser from '../../../domain/model/user/AbstractUser'
 import GetUserRepositoryPort from '../../../domain/port/driven/GetUser/GetUserRepositoryPort'
 import { UserRepositoryPort } from '../../../domain/port/driven/UserRepository/UserRepositoryPort'
 import User from '../../../domain/model/user/User'
-import GetLocationRepositoryPort from '../../../../location/domain/port/driven/GetLocation/GetLocationRepositoryPort'
+import LocationProvider from '../../../../shared/infrastructure/repository/providers/LocationProvider'
 
 export default class GetUserRepository implements GetUserRepositoryPort {
-  constructor(
-    private readonly userRepository: UserRepositoryPort,
-    private readonly getLocationRepository: GetLocationRepositoryPort 
-  ) {}
+  private readonly locationProvider: LocationProvider;
+
+  constructor(private readonly userRepository: UserRepositoryPort) {
+    this.locationProvider = new LocationProvider()
+  }
   
   public static readonly getClassName = (): string => {
     return 'GetUserRepository';
@@ -18,7 +19,7 @@ export default class GetUserRepository implements GetUserRepositoryPort {
   getUserById = async(id: string): Promise<AbstractUser> => {
     try {
       const user = await this.userRepository.getOne(id);
-      const location = await this.getLocationRepository.getLocation(user.idlocation)
+      const location = await this.locationProvider.getLocation(user.idlocation)
       
       return new User(
         user.id,
@@ -26,6 +27,7 @@ export default class GetUserRepository implements GetUserRepositoryPort {
         user.name,
         user.lastname,
         user.docnumber,
+        user.doctype,
         user.email,
         location
       )

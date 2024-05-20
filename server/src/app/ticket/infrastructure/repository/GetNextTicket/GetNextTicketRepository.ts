@@ -1,12 +1,16 @@
 
-import NullAppointment from '../../../../appointment/domain/model/appointment/NullAppointment';
 import NullTicket from '../../../domain/model/Ticket/NullTicket';
 import Ticket from '../../../domain/model/Ticket/Ticket';
 import GetNextTicketRepositoryPort from '../../../domain/port/driven/GetNextTicket/GetNextTicketRepositoryPort'
 import { TicketRepositoryPort } from '../../../domain/port/driven/TicketRepository/TicketRepositoryPort';
+import AppointmentProvider from '../../../../shared/infrastructure/repository/providers/AppointmentProvider';
 
 export default class GetNextTicketRepository implements GetNextTicketRepositoryPort {
-  constructor(private readonly ticketRepository: TicketRepositoryPort){}
+  private readonly getAppmntProvider: AppointmentProvider;
+
+  constructor(private readonly ticketRepository: TicketRepositoryPort){
+    this.getAppmntProvider = new AppointmentProvider();
+  }
 
   getNextTicket = async(): Promise<Ticket> => {
     try {
@@ -16,7 +20,7 @@ export default class GetNextTicketRepository implements GetNextTicketRepositoryP
         ticket.code,
         ticket.priority,
         ticket.status,
-        new NullAppointment()
+        await this.getAppmntProvider.getAppointment(ticket.codeappmnt)
       )
     } catch (error) {
       return new NullTicket();

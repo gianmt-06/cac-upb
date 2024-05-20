@@ -1,5 +1,5 @@
 
 export default interface LogInRepositoryPort {
-  validateUser(email: string, plainPassword: string): Promise<boolean>
+  getCredentials(email: string, plainPassword: string): Promise<boolean>
 }
   

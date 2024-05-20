@@ -19,7 +19,6 @@ export default class TicketRouter implements ExpressRouter {
     setRoutes = () => {
         this.router.get('/next', this.ticketController.getNext.bind(this.ticketController))
         this.router.get('/queue', this.ticketController.getQueue.bind(this.ticketController))
-
         this.router.post('/generate', this.ticketController.addTicket.bind(this.ticketController))
     };
 }

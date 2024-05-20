@@ -9,7 +9,5 @@ export default class GetNextTicketService implements GetNextTicketServicePort {
   getNextTicket = async(): Promise<Ticket> =>{
     return await this.getNextTicketRepository.getNextTicket();
   }
-
-  
 }
   

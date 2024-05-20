@@ -9,7 +9,7 @@ export default class TicketRepository implements TicketRepositoryPort {
     getAll!: () => Promise<TicketDTO[]>;
     update!: (key: string, partial: TicketDTO) => Promise<boolean>;
     delete!: (key: string) => Promise<boolean>;
-    
+
     save = (ticket: TicketDTO): Promise<boolean> => {
         try {
             this.priorityQueue.insert(ticket, ticket.priority);

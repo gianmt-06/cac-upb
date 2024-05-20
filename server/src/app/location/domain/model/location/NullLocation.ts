@@ -5,6 +5,7 @@ export default class NullLocation extends AbstractLocation {
         super(
             'not found id in database',
             'not found city in database',
+            'not found state in database',
             'not found name in database',
             'not found address in database'
         )

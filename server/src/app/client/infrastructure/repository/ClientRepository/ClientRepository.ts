@@ -1,7 +1,7 @@
 import DBActionsConfig from "../../../../../postgresql/config/DatabaseActions";
 import ClientDTO from "../../../domain/model/ClientDTO/ClientDTO";
 import { ClientRepositoryPort } from "../../../domain/port/driven/ClientRepository/UserRepositoryPort";
-import ClientDatabaseConection from "../../postgresql/ClientDatabaseConection";
+import ClientDatabaseConection from "../../../domain/port/driven/DatabaseConection/ClientDatabaseConection";
 
 export default class ClientRepository implements ClientRepositoryPort {
     private readonly databaseActions: DBActionsConfig;

@@ -1,6 +1,6 @@
 import DBActionsConfig from "../../../../../postgresql/config/DatabaseActions";
 import LocationDTO from "../../../domain/model/locationDTO/LocationDTO";
-import LocationDatabaseConection from "../../postgresql/LocationDatabaseConection";
+import LocationDatabaseConection from "../../../domain/port/driven/DatabaseConnection/LocationDatabaseConection";
 import { LocationRepositoryPort } from "../../../domain/port/driven/LocationRepository/LocationRepositoryPort";
 
 export default class LocationRepository implements LocationRepositoryPort {

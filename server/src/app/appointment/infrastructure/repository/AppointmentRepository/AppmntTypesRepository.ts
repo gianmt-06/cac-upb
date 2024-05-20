@@ -1,6 +1,6 @@
 import AppmntTypeDTO from "../../../domain/model/AppointmentDTO/AppmntTypeDTO";
 import { AppmntTypeRepositoryPort } from "../../../domain/port/driven/AppmntRepository/AppointmentTypePort";
-import AppmntTypeDatabaseConection from "../../postgresql/AppmntTypeDatabaseConection";
+import AppmntTypeDatabaseConection from "../../../domain/port/driven/DatabaseConection/AppmntTypeDatabaseConection";
 
 export default class AppointmentTypeRepository implements AppmntTypeRepositoryPort {
     constructor(private readonly databaseConection: AppmntTypeDatabaseConection){}

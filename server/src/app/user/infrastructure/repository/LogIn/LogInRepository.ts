@@ -14,7 +14,7 @@ export default class LogInRepository implements LogInRepositoryPort {
     return 'LogInRepostory';
   }
 
-  validateUser = async (email: string, plainPassword: string): Promise<boolean> => {
+  getCredentials = async (email: string, plainPassword: string): Promise<boolean> => {
     const credentials = await this.userRepository.getCredentials(email);
     return await this.hasherManager.comparePassword(plainPassword, credentials.hashPassword);
   }
