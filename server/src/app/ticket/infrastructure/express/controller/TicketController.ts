@@ -22,13 +22,11 @@ export default class TicketController extends Controller {
             ticket.status = 'active';
 
             this.createTicketUseCase.createTicket(ticket).then(value => {
-                res.status(200).json({created: value});
-            }).catch((_error) => {
-                res.status(500).json({error: 'Error de servidor'})
+                res.status(200).json(this.responseHandler.response("Ticket registrado con exito", value));
             })
 
         } catch (error) {
-            res.status(500).json({error: true})
+            res.status(500).json(this.responseHandler.serverError())
         }
     }
 
@@ -48,13 +46,11 @@ export default class TicketController extends Controller {
         try {            
 
             this.getQueueUseCase.getQueue().then(tickets => {
-                res.status(200).json(tickets);
-            }).catch((_error) => {
-                res.status(500).json({error: 'Error de servidor'})
+                res.status(200).json(this.responseHandler.response("Cola obtenida con exito", tickets));
             })
 
         } catch (error) {
-            res.status(500).json({error: true})
+            res.status(500).json(this.responseHandler.serverError());
         }
     }
 }
